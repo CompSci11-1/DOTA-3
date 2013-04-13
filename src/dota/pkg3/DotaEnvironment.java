@@ -27,7 +27,7 @@ public class DotaEnvironment extends Environment{
     private Boolean moved = true;
     private int movedCounter = 0;
     private Boolean travel = true;
-    
+    private Character character;
     public Grid getMasterGrid() {
         return masterGrid;
     }
@@ -114,6 +114,7 @@ public class DotaEnvironment extends Environment{
         if (travel){
         this.stone.draw(graphics, this.masterGrid);
         getMasterGrid().paintComponent(graphics);
+//        this.character.drawCharacter(graphics);
         graphics.setColor(Color.blue);
         graphics.fillOval(charX, charY, 20, 20);
         graphics.setColor(Color.gray);
