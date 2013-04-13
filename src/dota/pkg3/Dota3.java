@@ -31,6 +31,6 @@ public class Dota3 {
 //        Image background = ResourceTools.loadImageFromResource("");
 
         Environment environment = new DotaEnvironment();
-        ApplicationStarter.Run(args, appName, appSize, environment);
+        ApplicationStarter.run(args, appName, appSize, environment);
     }
 }
