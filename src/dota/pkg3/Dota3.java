@@ -21,6 +21,7 @@ public class Dota3 {
      */
     public static void main(String[] args) {
         startDotaEnvironment();
+        startCombatEnvironment();
     }
     
     private static void startDotaEnvironment(){
@@ -32,5 +33,15 @@ public class Dota3 {
 
         Environment environment = new DotaEnvironment();
         ApplicationStarter.run(args, appName, appSize, environment);
+    }
+    private static void startCombatEnvironment(){
+        String[] args = new String[0];
+        String appName = "Combat";
+        Dimension appSize = new Dimension(1200, 700);
+//        Dimension appSize = new Dimension(900, 500);
+//        Image background = ResourceTools.loadImageFromResource("");
+
+        Environment environment2 = new combatEnvironment();
+        ApplicationStarter.run(args, appName, appSize, environment2);
     }
 }

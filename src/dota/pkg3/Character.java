@@ -14,9 +14,9 @@ import java.awt.Graphics;
  */
 public class Character {
      
-    public void drawCharacter (Graphics graphics){
+    public void drawCharacter (Graphics graphics,int charX, int charY){
         graphics.setColor(Color.blue);
-        graphics.fillOval(10, 10, 20, 20);
+        graphics.fillOval(charX, charY, 20, 20);
         
     }
     

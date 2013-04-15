@@ -63,7 +63,7 @@ public class DotaEnvironment extends Environment{
         if (this.moved != null){
         if (this.moved){
             this.movedCounter += 1;
-            if(this.movedCounter >= 2){
+            if(this.movedCounter >= 1){
                 this.moved = false;
                 this.movedCounter = 0;
             }
@@ -96,6 +96,7 @@ public class DotaEnvironment extends Environment{
             this.gridX = this.gridX - 20;
             }
         }
+        
         }
     }
     }
@@ -115,7 +116,7 @@ public class DotaEnvironment extends Environment{
         if (travel){
         this.stone.draw(graphics, this.masterGrid);
         getMasterGrid().paintComponent(graphics);
-        this.character.drawCharacter(graphics);
+        this.character.drawCharacter(graphics,charX,charY);
 //        graphics.setColor(Color.blue);
 //        graphics.fillOval(charX, charY, 20, 20);
 //        graphics.setColor(Color.gray);

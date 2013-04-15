@@ -60,7 +60,7 @@ public class Wall {
         if (direction == "up"){
         for (int i = 0; i < this.getWall().size(); i++) {
             if(this.getWall().get(i).x == charX){
-                if(this.getWall().get(i).y == charY - 20){
+                if(this.getWall().get(i).y == charY - masterGrid.getCellHeight()){
                 return false;
                 }
             }
@@ -69,7 +69,7 @@ public class Wall {
         if (direction == "down"){
         for (int i = 0; i < this.getWall().size(); i++) {
             if(this.getWall().get(i).x == charX){
-                if(this.getWall().get(i).y == charY + 20){
+                if(this.getWall().get(i).y == charY + masterGrid.getCellHeight()){
                 return false;
                 }
             }
@@ -77,7 +77,7 @@ public class Wall {
         }
         if (direction == "left"){
         for (int i = 0; i < this.getWall().size(); i++) {
-            if(this.getWall().get(i).x == charX - 20){
+            if(this.getWall().get(i).x == charX - masterGrid.getCellWidth()){
                 if(this.getWall().get(i).y == charY){
                 return false;
                 
@@ -87,7 +87,7 @@ public class Wall {
         }
         if (direction == "right"){
         for (int i = 0; i < this.getWall().size(); i++) {
-            if(this.getWall().get(i).x == charX + 20){
+            if(this.getWall().get(i).x == charX + masterGrid.getCellWidth()){
                 if(this.getWall().get(i).y == charY){
                 return false;
                 
