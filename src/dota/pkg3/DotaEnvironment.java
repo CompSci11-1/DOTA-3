@@ -51,6 +51,7 @@ public class DotaEnvironment extends Environment{
         
         this.stone = new Wall();
         this.stone.start(this.masterGrid);
+        this.character = new Character();
 //        this.stone.setColor(Color.black);
     }
 
@@ -114,10 +115,10 @@ public class DotaEnvironment extends Environment{
         if (travel){
         this.stone.draw(graphics, this.masterGrid);
         getMasterGrid().paintComponent(graphics);
-//        this.character.drawCharacter(graphics);
-        graphics.setColor(Color.blue);
-        graphics.fillOval(charX, charY, 20, 20);
-        graphics.setColor(Color.gray);
+        this.character.drawCharacter(graphics);
+//        graphics.setColor(Color.blue);
+//        graphics.fillOval(charX, charY, 20, 20);
+//        graphics.setColor(Color.gray);
 //        graphics.fillRect(this.masterGrid.getCellPosition(30, 30).x, this.masterGrid.getCellPosition(30, 30).y, 20, 20);
     }
     }
