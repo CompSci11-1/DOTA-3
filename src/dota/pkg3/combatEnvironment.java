@@ -20,32 +20,26 @@ class combatEnvironment extends Environment {
 
     @Override
     public void initializeEnvironment() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void timerTaskHandler() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyReleasedHandler(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void environmentMouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void paintEnvironment(Graphics graphics) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
