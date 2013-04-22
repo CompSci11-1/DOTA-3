@@ -7,6 +7,8 @@ package dota.pkg3;
 import environment.ApplicationStarter;
 import environment.Environment;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
 
 /**
  *
@@ -20,7 +22,8 @@ public class MainMenu extends javax.swing.JPanel {
     public MainMenu() {
         initComponents();
     }
- private static void startDotaEnvironment(){
+
+    private static void startDotaEnvironment() {
         String[] args = new String[0];
         String appName = "Dota 3";
         Dimension appSize = new Dimension(1200, 700);
@@ -30,6 +33,7 @@ public class MainMenu extends javax.swing.JPanel {
         Environment environment = new DotaEnvironment();
         ApplicationStarter.run(args, appName, appSize, environment);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,13 +96,13 @@ public class MainMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       startDotaEnvironment();
+        startDotaEnvironment();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -79,22 +79,22 @@ private Boolean combat = true;
     public void keyPressedHandler(KeyEvent e) {
         if (travel) {
             if (!(this.moved)) {
-                if (e.getKeyCode() == KeyEvent.VK_W) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "up", charX, charY)) {
                         this.gridY = this.gridY + 20;
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "left", charX, charY)) {
                         this.gridX = this.gridX + 20;
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "down", charX, charY)) {
                         this.gridY = this.gridY - 20;
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "right", charX, charY)) {
                         this.gridX = this.gridX - 20;
