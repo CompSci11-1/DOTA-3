@@ -56,7 +56,7 @@ public class Wall {
 //        this.getWall().set();
         }
         
-        this.getWall().set(0, masterGrid.getCellPosition(30, 30));
+//        this.getWall().set(0, masterGrid.getCellPosition(30, 30));
         if (direction == "up"){
         for (int i = 0; i < this.getWall().size(); i++) {
             if(this.getWall().get(i).x == charX){

@@ -25,13 +25,13 @@ private Boolean combat = true;
     private int gridX = -200;
     private int gridY = -200;
     private Wall stone;
-    private int charX = 580;
-    private int charY = 340;
+    private int charX = 576;
+    private int charY = 336;
     private Boolean moved = true;
     private int movedCounter = 0;
     private Boolean travel = true;
     private Character character;
-
+private Route1 route1;
     public Grid getMasterGrid() {
         return masterGrid;
     }
@@ -49,13 +49,14 @@ private Boolean combat = true;
             getMasterGrid().setRows(49);
             getMasterGrid().setColumns(73);
             getMasterGrid().setColor(new Color(255, 0, 225));
-            getMasterGrid().setCellHeight(20);
-            getMasterGrid().setCellWidth(20);
+            getMasterGrid().setCellHeight(16);
+            getMasterGrid().setCellWidth(16);
         }
 
         this.stone = new Wall();
         this.stone.start(this.masterGrid);
         this.character = new Character();
+        this.route1 = new Route1();
 //        this.stone.setColor(Color.black);
     }
 
@@ -82,22 +83,22 @@ private Boolean combat = true;
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "up", charX, charY)) {
-                        this.gridY = this.gridY + 20;
+                        this.gridY = this.gridY + this.masterGrid.getCellHeight();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "left", charX, charY)) {
-                        this.gridX = this.gridX + 20;
+                        this.gridX = this.gridX + this.masterGrid.getCellWidth();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "down", charX, charY)) {
-                        this.gridY = this.gridY - 20;
+                        this.gridY = this.gridY - this.masterGrid.getCellHeight();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     this.moved = true;
                     if (this.stone.hitDetection(this.masterGrid, "right", charX, charY)) {
-                        this.gridX = this.gridX - 20;
+                        this.gridX = this.gridX - this.masterGrid.getCellWidth();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_L) {
                     combat = true;
@@ -137,7 +138,8 @@ public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(900, 600);
     public void paintEnvironment(Graphics graphics) {
         if (travel) {
             this.stone.draw(graphics, this.masterGrid);
-//            getMasterGrid().paintComponent(graphics);
+            getMasterGrid().paintComponent(graphics);
+            route1.drawRoute1(masterGrid, graphics);
             this.character.drawCharacter(graphics, charX, charY);
 //        graphics.setColor(Color.blue);
 //        graphics.fillOval(charX, charY, 20, 20);
