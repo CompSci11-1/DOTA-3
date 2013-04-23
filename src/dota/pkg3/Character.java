@@ -17,9 +17,8 @@ import java.util.ResourceBundle;
 public class Character {
      
     public void drawCharacter (Graphics graphics,int charX, int charY){
-        graphics.setColor(Color.blue);
-        graphics.fillOval(charX, charY, 20, 20);
-        ResourceTools.loadImageFromResource("Resources/3mGJGWg.png");
+        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/3mGJGWg.png"), charX, charY - 17, null);
+        
         
     }
     

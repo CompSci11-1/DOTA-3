@@ -137,7 +137,7 @@ public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(900, 600);
     public void paintEnvironment(Graphics graphics) {
         if (travel) {
             this.stone.draw(graphics, this.masterGrid);
-            getMasterGrid().paintComponent(graphics);
+//            getMasterGrid().paintComponent(graphics);
             this.character.drawCharacter(graphics, charX, charY);
 //        graphics.setColor(Color.blue);
 //        graphics.fillOval(charX, charY, 20, 20);
