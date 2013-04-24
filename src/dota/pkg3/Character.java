@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class Character {
      
     public void drawCharacter (Graphics graphics,int charX, int charY){
-        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/Char1.png"), charX , charY,20,32, null);
+        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/Char1.png"), charX -1, charY -15,20,32, null);
         
         
     }
