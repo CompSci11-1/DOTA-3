@@ -32,6 +32,9 @@ private Boolean combat = true;
     private Boolean travel = true;
     private Character character;
 private Route1 route1;
+
+    private Map store;
+
     public Grid getMasterGrid() {
         return masterGrid;
     }
@@ -42,7 +45,7 @@ private Route1 route1;
 
     @Override
     public void initializeEnvironment() {
-
+        this.store = MapFactory.getStore(masterGrid);
         setMasterGrid(new Grid());
         if (getMasterGrid() != null) {
             getMasterGrid().setPosition(new Point(this.gridX, this.gridY));

@@ -41,7 +41,7 @@ public class Dota3 {
 
         MainMenu cp = new MainMenu();
         frame.add(cp);
-        frame.setAlwaysOnTop(true);
+        frame.setAlwaysOnTop(false);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(new Dimension(400, 350));
