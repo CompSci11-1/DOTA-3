@@ -45,10 +45,7 @@ public class DotaEnvironment extends Environment {
     @Override
     public void initializeEnvironment() {
 //        this.store = MapFactory.getStore(masterGrid);
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/master
+
         setMasterGrid(new Grid());
         if (getMasterGrid() != null) {
             getMasterGrid().setPosition(new Point(this.gridX, this.gridY));

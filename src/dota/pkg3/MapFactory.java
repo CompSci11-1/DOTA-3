@@ -16,9 +16,8 @@ import java.util.ArrayList;
  */
 public class MapFactory {
     
-<<<<<<< HEAD
     public static Map getMap(Image background, Dimension gridCellSize, Dimension gridSize,
-            ArrayList<Point> obstacles, ArrayList<Point> portals, ArrayList<Point> items){
+            ArrayList<Point> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items){
 
         Map map = new Map(background, gridCellSize, gridSize);
         
@@ -28,16 +27,6 @@ public class MapFactory {
         
         return map;
     }
-=======
-//    public static Map getStore(Grid masterGrid){
-////        Map store = new Map();
-////        store.setBackground(ResourceTools.loadImageFromResource("Resources/Route with Grid.DIB"));
-////        store.getWalls().add(new Point(3,4));
-//        
-////        return store;
-//    }
-            
->>>>>>> origin/master
     
     public static Map getLevelOneMainMap(){
 //        Image background = ResourceTools.loadImageFromResource("Resouces/level_one_map.DIB");
@@ -49,8 +38,8 @@ public class MapFactory {
         obstacles.add(new Point(0, 0));
         //add other obstacles here...
         
-        ArrayList<Point> portals = new ArrayList<Point>();
-        portals.add(new Point(0, 0));
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1,1)));
         //add other portals here...
         
         ArrayList<Point> items = new ArrayList<Point>();
@@ -69,8 +58,8 @@ public class MapFactory {
         obstacles.add(new Point(0, 0));
         //add other obstacles here...
         
-        ArrayList<Point> portals = new ArrayList<Point>();
-        portals.add(new Point(0, 0));
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+//        portals.add(new Point(0, 0));
         //add other portals here...
         
         ArrayList<Point> items = new ArrayList<Point>();
