@@ -84,10 +84,11 @@ public class Map {
             return false;
         }
         
-        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getPortals())) {
+        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getPortalLocations())) {
             System.out.println("Hey... need to go somewhere else!");
             //put an event handler here!
             if (getPortalHandler() != null) {
+                //use the getMapPortal method to pass the portal back to the event handler...
                 getPortalHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
             }
         }
@@ -111,6 +112,15 @@ public class Map {
         }
         return false;
     }
+    
+    private MapPortal getMapPortal(Point location){
+        for (MapPortal portal : getPortals()){
+            if (portal.getLocation().equals(location)){
+                return portal;
+            }
+        }
+        return null;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Properties">
@@ -118,7 +128,7 @@ public class Map {
     private Map.MovementEventHander portalHandler;
     private Map.MovementEventHander itemHandler;
     private ArrayList<Point> obstacles = new ArrayList<Point>();
-    private ArrayList<Point> portals = new ArrayList<Point>();
+    private ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
     private ArrayList<Point> items = new ArrayList<Point>();
     private Image background;
     private Grid grid;
@@ -180,16 +190,29 @@ public class Map {
     }
     
     /**
-     * @return the portals
+     * @return the Point locations of the map portals
      */
-    public ArrayList<Point> getPortals() {
+    public ArrayList<Point> getPortalLocations() {
+        ArrayList<Point> locations = new ArrayList<Point>();
+        
+        for (MapPortal portal : getPortals()){
+            locations.add(portal.getLocation());
+        }
+        
+        return locations;
+    }
+    
+    /**
+     * @return the Map Portals
+     */
+    public ArrayList<MapPortal> getPortals() {
         return portals;
     }
     
     /**
-     * @param portals the portals to set
+     * @param portals the Map Portals to set
      */
-    public void setPortals(ArrayList<Point> portals) {
+    public void setPortals(ArrayList<MapPortal> portals) {
         this.portals = portals;
     }
     
