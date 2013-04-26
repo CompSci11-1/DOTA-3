@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class MapFactory {
     
+<<<<<<< HEAD
     public static Map getMap(Image background, Dimension gridCellSize, Dimension gridSize,
             ArrayList<Point> obstacles, ArrayList<Point> portals, ArrayList<Point> items){
 
@@ -27,6 +28,16 @@ public class MapFactory {
         
         return map;
     }
+=======
+//    public static Map getStore(Grid masterGrid){
+////        Map store = new Map();
+////        store.setBackground(ResourceTools.loadImageFromResource("Resources/Route with Grid.DIB"));
+////        store.getWalls().add(new Point(3,4));
+//        
+////        return store;
+//    }
+            
+>>>>>>> origin/master
     
     public static Map getLevelOneMainMap(){
 //        Image background = ResourceTools.loadImageFromResource("Resouces/level_one_map.DIB");
