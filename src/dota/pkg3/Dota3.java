@@ -21,21 +21,11 @@ public class Dota3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        startDotaEnvironment();
         newWindow();
         
     }
     
-//    private static void startDotaEnvironment(){
-//        String[] args = new String[0];
-//        String appName = "Dota 3";
-//        Dimension appSize = new Dimension(1200, 700);
-////        Dimension appSize = new Dimension(900, 500);
-////        Image background = ResourceTools.loadImageFromResource("");
-//
-//        Environment environment = new DotaEnvironment();
-//        ApplicationStarter.run(args, appName, appSize, environment);
-//    }
+
      private static void newWindow() {
         JFrame frame = new JFrame("Menu");
 

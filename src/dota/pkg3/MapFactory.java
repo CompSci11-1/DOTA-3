@@ -39,7 +39,7 @@ public class MapFactory {
         //add other obstacles here...
         
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1,1)));
+        portals.add(new MapPortal(new Point(0, 10), getStoreMap(), new Point(1,1)));
         //add other portals here...
         
         ArrayList<Point> items = new ArrayList<Point>();

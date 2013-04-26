@@ -6,6 +6,7 @@ package dota.pkg3;
 
 import environment.Environment;
 import environment.Grid;
+import image.ResourceTools;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -32,7 +33,6 @@ public class DotaEnvironment extends Environment {
     private Boolean travel = true;
     private Character character;
     private Route1 route1;
-    private Map store;
 
     public Grid getMasterGrid() {
         return masterGrid;
@@ -45,7 +45,6 @@ public class DotaEnvironment extends Environment {
     @Override
     public void initializeEnvironment() {
 //        this.store = MapFactory.getStore(masterGrid);
-
         setMasterGrid(new Grid());
         if (getMasterGrid() != null) {
             getMasterGrid().setPosition(new Point(this.gridX, this.gridY));
@@ -58,7 +57,7 @@ public class DotaEnvironment extends Environment {
 
         this.stone = new Wall();
         this.stone.start(this.masterGrid);
-        this.character = new Character();
+        this.character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));
         this.route1 = new Route1();
 //        this.stone.setColor(Color.black);
     }
@@ -143,8 +142,9 @@ public class DotaEnvironment extends Environment {
         if (travel) {
             this.stone.draw(graphics, this.masterGrid);
             getMasterGrid().paintComponent(graphics);
-            route1.drawRoute1(masterGrid, graphics);
+//            route1.drawRoute1(masterGrid, graphics);
             this.character.drawCharacter(graphics, charX, charY);
+           
 //        graphics.setColor(Color.blue);
 //        graphics.fillOval(charX, charY, 20, 20);
 //        graphics.setColor(Color.gray);

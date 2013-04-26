@@ -8,6 +8,7 @@ import environment.Grid;
 import image.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ResourceBundle;
 
 /**
@@ -15,9 +16,14 @@ import java.util.ResourceBundle;
  * @author erickbassett
  */
 public class Character {
-     
+    private Image image;
+    
+    public Character(Image image){
+        this.image = image;
+    }
     public void drawCharacter (Graphics graphics,int charX, int charY){
-        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/Char1.png"), charX -1, charY -15,20,32, null);
+//        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/Char1.png"), charX -1, charY -15,20,32, null);
+        graphics.drawImage(image, charX -1, charY -15,20,32, null);
         
         
     }
