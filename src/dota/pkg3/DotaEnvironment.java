@@ -4,7 +4,6 @@
  */
 package dota.pkg3;
 
-import environment.ApplicationStarter;
 import environment.Environment;
 import environment.Grid;
 import java.awt.Color;
@@ -46,6 +45,10 @@ public class DotaEnvironment extends Environment {
     @Override
     public void initializeEnvironment() {
 //        this.store = MapFactory.getStore(masterGrid);
+<<<<<<< HEAD
+        
+=======
+>>>>>>> origin/master
         setMasterGrid(new Grid());
         if (getMasterGrid() != null) {
             getMasterGrid().setPosition(new Point(this.gridX, this.gridY));
