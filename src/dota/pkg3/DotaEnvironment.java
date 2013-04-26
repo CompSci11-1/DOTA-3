@@ -20,7 +20,8 @@ import javax.swing.JFrame;
  * @author erickbassett
  */
 public class DotaEnvironment extends Environment {
-private Boolean combat = true;
+
+    private Boolean combat = true;
     private Grid masterGrid;
     private int gridX = -200;
     private int gridY = -200;
@@ -31,8 +32,7 @@ private Boolean combat = true;
     private int movedCounter = 0;
     private Boolean travel = true;
     private Character character;
-private Route1 route1;
-
+    private Route1 route1;
     private Map store;
 
     public Grid getMasterGrid() {
@@ -45,7 +45,7 @@ private Route1 route1;
 
     @Override
     public void initializeEnvironment() {
-        this.store = MapFactory.getStore(masterGrid);
+//        this.store = MapFactory.getStore(masterGrid);
         setMasterGrid(new Grid());
         if (getMasterGrid() != null) {
             getMasterGrid().setPosition(new Point(this.gridX, this.gridY));
@@ -113,8 +113,9 @@ private Route1 route1;
             }
         }
     }
-public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(900, 600);
+    public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(900, 600);
     JFrame frame = new JFrame("combat");
+
     public void run(String[] args, String appName, Dimension appSize, Environment environment) {
 //        JFrame frame = new JFrame(appName);
         frame.add(environment);
@@ -125,7 +126,7 @@ public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(900, 600);
     }
 
     public void run() {
-         Environment environment = new combatEnvironment();
+        Environment environment = new combatEnvironment();
         run(new String[0], "combat", DEFAULT_WINDOW_SIZE, environment);
     }
 

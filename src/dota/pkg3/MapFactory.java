@@ -14,13 +14,13 @@ import java.awt.Point;
  */
 public class MapFactory {
     
-    public static Map getStore(Grid masterGrid){
-        Map store = new Map();
-        store.setBackground(ResourceTools.loadImageFromResource("Resources/Route with Grid.DIB"));
-        store.getWalls().add(new Point(3,4));
-        
-        return store;
-    }
+//    public static Map getStore(Grid masterGrid){
+////        Map store = new Map();
+////        store.setBackground(ResourceTools.loadImageFromResource("Resources/Route with Grid.DIB"));
+////        store.getWalls().add(new Point(3,4));
+//        
+////        return store;
+//    }
             
     
 }
