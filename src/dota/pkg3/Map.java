@@ -5,59 +5,236 @@
 package dota.pkg3;
 
 import environment.Grid;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 
 /**
  *
- * @author Evan
+ * @author kevin.lawrence
  */
 public class Map {
-    private ArrayList<Point> walls = new ArrayList<Point>();
+
+    //<editor-fold defaultstate="collapsed" desc="Reference: Interfaces and Enums">
+    public static enum Direction {
+        
+        UP, DOWN, LEFT, RIGHT
+    }
+    
+    public static enum MovementEventType {
+        
+        OBSTACLE, ITEM, PORTAL
+    }
+    
+    public interface MovementEventHander {
+        
+        public void MovementEvent(Map.MovementEventType me);
+        //probably need more information here... like location
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
+    public Map(Image background, Dimension gridCellSize, Dimension gridSize) {
+        this.background = background;
+        
+        this.grid = new Grid();
+        
+        this.grid.setRows(gridSize.width);
+        this.grid.setColumns(gridSize.height);
+        
+        this.grid.setCellWidth(gridCellSize.width);
+        this.grid.setCellHeight(gridCellSize.height);
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Methods">
+    public static Point getMovementCellLocation(Point currentLocation, Map.Direction movementDirection) {
+        Point movementCellLocation = (Point) currentLocation.clone();
+        
+        switch (movementDirection) {
+            case UP:
+                movementCellLocation.y -= 1;
+                break;
+                
+            case DOWN:
+                movementCellLocation.y += 1;
+                break;
+                
+            case LEFT:
+                movementCellLocation.x -= 1;
+                break;
+                
+            case RIGHT:
+                movementCellLocation.x += 1;
+                break;
+        }
+        
+        return movementCellLocation;
+    }
+    
+    public boolean validateCharacterMove(Point characterCellLocation, Map.Direction direction) {
+        
+        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getObstacles())) {
+            System.out.println("Ouch... that hurt!");
+            //put an event handler here... something like
+            if (getObstacleHandler() != null) {
+                getObstacleHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
+            }
+            return false;
+        }
+        
+        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getPortals())) {
+            System.out.println("Hey... need to go somewhere else!");
+            //put an event handler here!
+            if (getPortalHandler() != null) {
+                getPortalHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
+            }
+        }
+        
+        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getItems())) {
+            System.out.println("Hey... found something!");
+            //put an event handler here!
+            if (getItemHandler() != null) {
+                getItemHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
+            }
+        }
+        
+        return true;
+    }
+    
+    public static boolean hitTest(Point cellLocation, ArrayList<Point> locations) {
+        for (Point location : locations) {
+            if (location.equals(cellLocation)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Properties">
+    private Map.MovementEventHander obstacleHandler;
+    private Map.MovementEventHander portalHandler;
+    private Map.MovementEventHander itemHandler;
+    private ArrayList<Point> obstacles = new ArrayList<Point>();
+    private ArrayList<Point> portals = new ArrayList<Point>();
     private ArrayList<Point> items = new ArrayList<Point>();
     private Image background;
     private Grid grid;
-
+    
     /**
-     * @return the walls
+     * @return the obstacleHandler
      */
-    public ArrayList<Point> getWalls() {
-        return walls;
+    public Map.MovementEventHander getObstacleHandler() {
+        return obstacleHandler;
     }
-
+    
     /**
-     * @param walls the walls to set
+     * @param obstacleHandler the obstacleHandler to set
      */
-    public void setWalls(ArrayList<Point> walls) {
-        this.walls = walls;
+    public void setObstacleHandler(Map.MovementEventHander obstacleHandler) {
+        this.obstacleHandler = obstacleHandler;
     }
-
+    
+    /**
+     * @return the portalHandler
+     */
+    public Map.MovementEventHander getPortalHandler() {
+        return portalHandler;
+    }
+    
+    /**
+     * @param portalHandler the portalHandler to set
+     */
+    public void setPortalHandler(Map.MovementEventHander portalHandler) {
+        this.portalHandler = portalHandler;
+    }
+    
+    /**
+     * @return the itemHandler
+     */
+    public Map.MovementEventHander getItemHandler() {
+        return itemHandler;
+    }
+    
+    /**
+     * @param itemHandler the itemHandler to set
+     */
+    public void setItemHandler(Map.MovementEventHander itemHandler) {
+        this.itemHandler = itemHandler;
+    }
+    
+    /**
+     * @return the obstacles
+     */
+    public ArrayList<Point> getObstacles() {
+        return obstacles;
+    }
+    
+    /**
+     * @param obstacles the obstacles to set
+     */
+    public void setObstacles(ArrayList<Point> obstacles) {
+        this.obstacles = obstacles;
+    }
+    
+    /**
+     * @return the portals
+     */
+    public ArrayList<Point> getPortals() {
+        return portals;
+    }
+    
+    /**
+     * @param portals the portals to set
+     */
+    public void setPortals(ArrayList<Point> portals) {
+        this.portals = portals;
+    }
+    
     /**
      * @return the items
      */
     public ArrayList<Point> getItems() {
         return items;
     }
-
+    
     /**
      * @param items the items to set
      */
     public void setItems(ArrayList<Point> items) {
         this.items = items;
     }
-
+    
     /**
      * @return the background
      */
     public Image getBackground() {
         return background;
     }
-
+    
     /**
      * @param background the background to set
      */
     public void setBackground(Image background) {
         this.background = background;
     }
+    
+    /**
+     * @return the grid
+     */
+    public Grid getGrid() {
+        return grid;
+    }
+    
+    /**
+     * @param grid the grid to set
+     */
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+    //</editor-fold>
+
+
 }
