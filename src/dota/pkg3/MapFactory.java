@@ -29,27 +29,46 @@ public class MapFactory {
     }
     
     public static Map getLevelOneMainMap(){
-        Image background = ResourceTools.loadImageFromResource("Resouces/level_one_map.png");
-        Dimension gridCellSize = new Dimension(20, 20);
-        Dimension gridSize = new Dimension(40, 30);
+        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(20, 70);
         
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
         obstacles.add(new MapObstacle(new Point(0, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 1), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 2), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 3), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 6), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 7), ObstacleType.WALL));
+
+        obstacles.add(new MapObstacle(new Point(59, 2), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(60, 2), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(61, 2), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(59, 3), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(60, 3), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(61, 3), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(59, 4), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(60, 4), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(61, 4), ObstacleType.WATER));
         //add other obstacles here...
         
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1, 1)));
+        portals.add(new MapPortal(new Point(40, 4), getStoreMap(), new Point(1, 1)));
         //add other portals here...
         
         ArrayList<Point> items = new ArrayList<Point>();
-        items.add(new Point(0, 0));
+        items.add(new Point(10, 10));
+        items.add(new Point(12, 10));
         //add other items here
         
         return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
     
     public static Map getStoreMap(){
-        Image background = ResourceTools.loadImageFromResource("Resouces/store_map.DIB");
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
         Dimension gridCellSize = new Dimension(20, 20);
         Dimension gridSize = new Dimension(10, 15);
         
