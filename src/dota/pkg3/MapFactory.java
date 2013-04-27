@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MapFactory {
     
     public static Map getMap(Image background, Dimension gridCellSize, Dimension gridSize,
-            ArrayList<Point> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items){
+        ArrayList<MapObstacle> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items){
 
         Map map = new Map(background, gridCellSize, gridSize);
         
@@ -29,17 +29,16 @@ public class MapFactory {
     }
     
     public static Map getLevelOneMainMap(){
-//        Image background = ResourceTools.loadImageFromResource("Resouces/level_one_map.DIB");
-        Image background = ResourceTools.loadImageFromResource("Resouces/Route with grid.DIB");
+        Image background = ResourceTools.loadImageFromResource("Resouces/level_one_map.png");
         Dimension gridCellSize = new Dimension(20, 20);
         Dimension gridSize = new Dimension(40, 30);
         
-        ArrayList<Point> obstacles = new ArrayList<Point>();
-        obstacles.add(new Point(0, 0));
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+        obstacles.add(new MapObstacle(new Point(0, 0), ObstacleType.WALL));
         //add other obstacles here...
         
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-        portals.add(new MapPortal(new Point(0, 10), getStoreMap(), new Point(1,1)));
+        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1, 1)));
         //add other portals here...
         
         ArrayList<Point> items = new ArrayList<Point>();
@@ -54,13 +53,12 @@ public class MapFactory {
         Dimension gridCellSize = new Dimension(20, 20);
         Dimension gridSize = new Dimension(10, 15);
         
-        ArrayList<Point> obstacles = new ArrayList<Point>();
-        obstacles.add(new Point(0, 0));
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+        obstacles.add(new MapObstacle(new Point(0, 0), ObstacleType.WALL));
         //add other obstacles here...
         
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-//        portals.add(new Point(0, 0));
-        //add other portals here...
+//        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1, 1)));
         
         ArrayList<Point> items = new ArrayList<Point>();
         items.add(new Point(0, 0));

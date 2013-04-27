@@ -45,9 +45,11 @@ public class Map {
         
         this.grid.setCellWidth(gridCellSize.width);
         this.grid.setCellHeight(gridCellSize.height);
+        
+        //set default event handlers... let the user override these as required
     }
     //</editor-fold>
-
+    
     //<editor-fold defaultstate="collapsed" desc="Methods">
     public static Point getMovementCellLocation(Point currentLocation, Map.Direction movementDirection) {
         Point movementCellLocation = (Point) currentLocation.clone();
@@ -73,13 +75,24 @@ public class Map {
         return movementCellLocation;
     }
     
+    public void obstacleEvent(MapObstacle obstacle){
+        System.out.println("Ouch... that hurt!");
+//        AudioPlayer.play(ResourceTools.getResourceAsStream("Resources/ouch_bump.wav"));
+    }
+    
     public boolean validateCharacterMove(Point characterCellLocation, Map.Direction direction) {
+        MapObstacle obstacle = getMapObstacle(getMovementCellLocation(characterCellLocation, direction));
         
-        if (hitTest(getMovementCellLocation(characterCellLocation, direction), getObstacles())) {
-            System.out.println("Ouch... that hurt!");
-            //put an event handler here... something like
+        if (obstacle != null) {
+            /* Note that this implementation provide a default obstacle event 
+             * handler "this.obstacleEvent(obstacle)" - see method above - that
+             * can be overridden if the user of this class passes in another
+             * class that implements the ObstacleEventHandler interface.
+             */ 
             if (getObstacleHandler() != null) {
-                getObstacleHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
+                getObstacleHandler().obstacleEvent(obstacle);
+            } else {
+                this.obstacleEvent(obstacle);
             }
             return false;
         }
@@ -121,13 +134,22 @@ public class Map {
         }
         return null;
     }
+
+    private MapObstacle getMapObstacle(Point location){
+        for (MapObstacle obstacle : getObstacles()){
+            if (obstacle.getLocation().equals(location)){
+                return obstacle;
+            }
+        }
+        return null;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Properties">
-    private Map.MovementEventHander obstacleHandler;
+    private ObstacleEventHandler obstacleHandler;
     private Map.MovementEventHander portalHandler;
     private Map.MovementEventHander itemHandler;
-    private ArrayList<Point> obstacles = new ArrayList<Point>();
+    private ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
     private ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
     private ArrayList<Point> items = new ArrayList<Point>();
     private Image background;
@@ -136,14 +158,14 @@ public class Map {
     /**
      * @return the obstacleHandler
      */
-    public Map.MovementEventHander getObstacleHandler() {
+    public ObstacleEventHandler getObstacleHandler() {
         return obstacleHandler;
     }
     
     /**
      * @param obstacleHandler the obstacleHandler to set
      */
-    public void setObstacleHandler(Map.MovementEventHander obstacleHandler) {
+    public void setObstacleHandler(ObstacleEventHandler obstacleHandler) {
         this.obstacleHandler = obstacleHandler;
     }
     
@@ -176,16 +198,29 @@ public class Map {
     }
     
     /**
+     * @return the Point locations of the map obstacles
+     */
+    public ArrayList<Point> getObstacleLocations() {
+        ArrayList<Point> locations = new ArrayList<Point>();
+        
+        for (MapObstacle obstacle : getObstacles()){
+            locations.add(obstacle.getLocation());
+        }
+        
+        return locations;
+    }
+    
+    /**
      * @return the obstacles
      */
-    public ArrayList<Point> getObstacles() {
+    public ArrayList<MapObstacle> getObstacles() {
         return obstacles;
     }
     
     /**
      * @param obstacles the obstacles to set
      */
-    public void setObstacles(ArrayList<Point> obstacles) {
+    public void setObstacles(ArrayList<MapObstacle> obstacles) {
         this.obstacles = obstacles;
     }
     
