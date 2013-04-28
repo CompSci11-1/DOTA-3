@@ -34,6 +34,10 @@ public class MainMenu extends javax.swing.JPanel {
         ApplicationStarter.run(args, appName, appSize, environment);
     }
 
+    private void startMapEnvironment() {
+        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1200, 700), new MapEnvironment());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +64,7 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Random Buuuton");
+        jButton2.setText("Map test...");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -101,7 +105,8 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        startMapEnvironment();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
