@@ -5,6 +5,7 @@
 package dota.pkg3;
 
 import environment.Environment;
+import image.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -19,6 +20,11 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     private Map level_one_map;
     private Map currentMap;
+    private Character character;
+    private int charX = 0;
+    private int charY = 0;
+    private Boolean moved = true;
+    private int movedCounter;
 
     @Override
     public void initializeEnvironment() {
@@ -27,10 +33,20 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
+        character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));;
     }
 
     @Override
     public void timerTaskHandler() {
+        if (this.moved != null) {
+            if (this.moved) {
+                this.movedCounter += 1;
+                if (this.movedCounter >= 2) {
+                    this.moved = false;
+                    this.movedCounter = 0;
+                }
+            }
+        }
 //        throw new UnsupportedOperationException("Not supported yet.");
     }
 //validateLocation(Point cellLocation)
@@ -62,6 +78,29 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 }
             }
         }
+        if (!(this.moved)) {
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                if (this.currentMap.validateLocation(new Point(charX,charY))) {
+                    charY -= 16;
+                    this.moved = true;
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.LEFT)) {
+                    charX -= 16;
+                    this.moved = true;
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.DOWN)) {
+                    charY += 16;
+                    this.moved = true;
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.RIGHT)) {
+                    charX += 16;
+                    this.moved = true;
+                }
+            }
+        }
     }
 
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
@@ -90,10 +129,10 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
+            this.character.drawCharacter(graphics, charX, charY);
         }
     }
 
-    
     //<editor-fold defaultstate="collapsed" desc="PortalEventHandler Interface">
     @Override
     public void portalEvent(MapPortal portal) {

@@ -164,8 +164,7 @@ public class Map {
         }
         
         MapPortal portal = getMapPortal(cellLocation);
-        if (portal != null) {
-            
+        if (portal != null) {           
             if (getPortalHandler() != null){
                 getPortalHandler().portalEvent(portal);
             } else {
