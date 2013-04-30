@@ -133,6 +133,15 @@ public class Map {
     }
     
     public void obstacleEvent(MapObstacle obstacle){
+        if(obstacle.getType() == ObstacleType.BUSH){
+
+        }
+        if(obstacle.getType() == ObstacleType.WALL){
+
+        }
+        if(obstacle.getType() == ObstacleType.WATER){
+
+        }
         System.out.println("Ouch... that hurt!");
 //        AudioPlayer.play(ResourceTools.getResourceAsStream("Resources/ouch_bump.wav"));
     }
