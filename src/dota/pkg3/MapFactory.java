@@ -15,74 +15,136 @@ import java.util.ArrayList;
  * @author kevin.lawrence
  */
 public class MapFactory {
-    
+
     public static Map getMap(Image background, Dimension gridCellSize, Dimension gridSize,
-        ArrayList<MapObstacle> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items){
+            ArrayList<MapObstacle> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items) {
 
         Map map = new Map(background, gridCellSize, gridSize);
-        
+
         map.setObstacles(obstacles);
         map.setItems(items);
         map.setPortals(portals);
-        
+
         return map;
     }
-    
-    public static Map getLevelOneMainMap(){
-        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
+
+    public static Map getLevelOneMainMap() {
+        Image background = ResourceTools.loadImageFromResource("Resources/Route (2).bmp");
         Dimension gridCellSize = new Dimension(16, 16);
         Dimension gridSize = new Dimension(20, 70);
-        
-        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
-        obstacles.add(new MapObstacle(new Point(0, 0), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 1), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 2), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 3), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 4), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 6), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(0, 7), ObstacleType.WALL));
 
-        obstacles.add(new MapObstacle(new Point(59, 2), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(60, 2), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(61, 2), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(59, 3), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(60, 3), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(61, 3), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(59, 4), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(60, 4), ObstacleType.WATER));
-        obstacles.add(new MapObstacle(new Point(61, 4), ObstacleType.WATER));
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+        obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(1, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(2, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(3, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(-1, 6), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(1, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(2, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(3, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(4, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(5, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(6, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(6, 8), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(6, 9), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(6, 10), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(6, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(5, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(4, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(3, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(2, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(1, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 1), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 2), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 3), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 5), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 6), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 8), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 9), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 10), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 12), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 13), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 14), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(58, 15), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(57, 1), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 15), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 14), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 13), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 12), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 11), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 10), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 9), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 8), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 6), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(62, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(63, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(64, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(65, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(66, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(67, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(68, 5), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(68, 6), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(68, 7), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(68, 8), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(69, 8), ObstacleType.WALL));
+
+
+
+        obstacles.add(new MapObstacle(new Point(59, 15), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(60, 15), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(61, 15), ObstacleType.WATER));
+
         //add other obstacles here...
-        
+
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
         portals.add(new MapPortal(new Point(40, 4), getStoreMap(), new Point(1, 1)));
         //add other portals here...
-        
+
         ArrayList<Point> items = new ArrayList<Point>();
         items.add(new Point(10, 10));
         items.add(new Point(12, 10));
         //add other items here
-        
+
         return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
-    
-    public static Map getStoreMap(){
+
+    public static Map getStoreMap() {
         //change this image to the store when you get one...
-        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
-        Dimension gridCellSize = new Dimension(20, 20);
-        Dimension gridSize = new Dimension(10, 15);
-        
+        Image background = ResourceTools.loadImageFromResource("Resources/Generic_Store(Grid).png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(20, 20);
+
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
-        obstacles.add(new MapObstacle(new Point(0, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(0, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(1, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(2, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(3, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(4, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(5, 5), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(8, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(9, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(10, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(11, 4), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(12, 4), ObstacleType.WALL));
+
         //add other obstacles here...
-        
+
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-//        portals.add(new MapPortal(new Point(0, 0), getStoreMap(), new Point(1, 1)));
-        
+//        portals.add(new MapPortal(new Point(6, 5), getLevelOneMainMap(), new Point(0, 0)));
+
         ArrayList<Point> items = new ArrayList<Point>();
-        items.add(new Point(0, 0));
+        items.add(new Point(12, 5));
+        items.add(new Point(11, 5));
+        items.add(new Point(10, 5));
         //add other items here
-        
+
         return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
 }

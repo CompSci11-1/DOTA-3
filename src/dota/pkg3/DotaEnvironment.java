@@ -143,7 +143,7 @@ public class DotaEnvironment extends Environment {
             this.stone.draw(graphics, this.masterGrid);
             getMasterGrid().paintComponent(graphics);
 //            route1.drawRoute1(masterGrid, graphics);
-            this.character.drawCharacter(graphics, charX, charY);
+//            this.character.drawCharacter(graphics, charXY);
            
 //        graphics.setColor(Color.blue);
 //        graphics.fillOval(charX, charY, 20, 20);

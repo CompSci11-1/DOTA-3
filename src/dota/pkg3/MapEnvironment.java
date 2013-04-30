@@ -21,7 +21,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private Map level_one_map;
     private Map currentMap;
     private Character character;
-    private int charX = 0;
+    private Point charXY = this.currentMap.getCellLocation(new Point(0, 0));
     private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
@@ -80,23 +80,23 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         }
         if (!(this.moved)) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
-                if (this.currentMap.validateLocation(new Point(charX,charY))) {
-                    charY -= 16;
+                if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
+                    charXY.y -= 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.LEFT)) {
-                    charX -= 16;
+                if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
+                    charXY.x -= 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.DOWN)) {
-                    charY += 16;
+                if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
+                    charXY.y += 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                if (this.currentMap.validateCharacterMove(new Point(charX,charY), Map.Direction.RIGHT)) {
-                    charX += 16;
+                if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
+                    charXY.x += 16;
                     this.moved = true;
                 }
             }
@@ -129,7 +129,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
-            this.character.drawCharacter(graphics, charX, charY);
+            this.character.drawCharacter(graphics, charXY);
         }
     }
 
