@@ -136,8 +136,6 @@ public class MapFactory {
 
         //add other obstacles here...
 
-        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-//        portals.add(new MapPortal(new Point(6, 5), getLevelOneMainMap(), new Point(0, 0)));
 
         ArrayList<Point> items = new ArrayList<Point>();
         items.add(new Point(12, 5));
@@ -145,6 +143,15 @@ public class MapFactory {
         items.add(new Point(10, 5));
         //add other items here
 
-        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+        Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+        
+        Map store = getStoreMap();
+        store.getPortals().add(new MapPortal(new Point(6,5), levelOneMap, new Point( 22, 22)));
+        
+        levelOneMap.getPortals().add(new MapPortal(new Point(6, 5), store, new Point(0, 0)));
+
+        return levelOneMap;
     }
 }

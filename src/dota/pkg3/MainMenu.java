@@ -26,7 +26,7 @@ public class MainMenu extends javax.swing.JPanel {
     private static void startDotaEnvironment() {
         String[] args = new String[0];
         String appName = "Dota 3";
-        Dimension appSize = new Dimension(1200, 700);
+        Dimension appSize = new Dimension(1000, 400);
 //        Dimension appSize = new Dimension(900, 500);
 //        Image background = ResourceTools.loadImageFromResource("");
 
@@ -35,7 +35,7 @@ public class MainMenu extends javax.swing.JPanel {
     }
 
     private void startMapEnvironment() {
-        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1200, 700), new MapEnvironment());
+        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1200, 400), new MapEnvironment());
     }
     
     /**

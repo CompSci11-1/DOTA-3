@@ -63,8 +63,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_L) {
                 if (currentMap != null) {
-                    System.out.println("Validate Location");
-                    currentMap.validateLocation(new Point(0, 0));
+//                    System.out.println("Validate Location");
+//                    currentMap.validateLocation(new Point(0, 0));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_G) {
                 if (currentMap != null) {
@@ -126,6 +126,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     @Override
     public void paintEnvironment(Graphics graphics) {
+        
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
