@@ -27,6 +27,10 @@ public class MapFactory {
 
         return map;
     }
+    
+    public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
+        startMap.getPortals().add(new MapPortal(startLocation, destinationMap, destinationLocation));
+    }
 
     public static Map getLevelOneMainMap() {
         Image background = ResourceTools.loadImageFromResource("Resources/Route (2).bmp");
@@ -103,15 +107,18 @@ public class MapFactory {
         //add other obstacles here...
 
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-        portals.add(new MapPortal(new Point(40, 4), getStoreMap(), new Point(1, 1)));
-        //add other portals here...
-
+        
         ArrayList<Point> items = new ArrayList<Point>();
         items.add(new Point(10, 10));
         items.add(new Point(12, 10));
         //add other items here
 
-        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+        Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+
+        addPortal(levelOneMap, new Point(40, 4), getStoreMap(), new Point(0,0));
+        //add other portals here...
+
+        return levelOneMap;
     }
 
     public static Map getStoreMap() {
