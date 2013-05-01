@@ -111,6 +111,7 @@ public class MapFactory {
         ArrayList<Point> items = new ArrayList<Point>();
         items.add(new Point(10, 10));
         items.add(new Point(12, 10));
+        items.add(new Point(0,9));
         //add other items here
 
         Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
