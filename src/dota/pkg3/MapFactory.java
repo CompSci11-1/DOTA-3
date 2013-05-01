@@ -152,13 +152,7 @@ public class MapFactory {
 
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
 
-        Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
-        
-        Map store = getStoreMap();
-//        store.getPortals().add(new MapPortal(new Point(6,5), levelOneMap, new Point( 22, 22)));
-        
-//        levelOneMap.getPortals().add(new MapPortal(new Point(6, 5), store, new Point(0, 0)));
 
-        return levelOneMap;
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
 }
