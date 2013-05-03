@@ -4,6 +4,7 @@
  */
 package dota.pkg3;
 
+import audio.AudioPlayer;
 import environment.Environment;
 import image.ResourceTools;
 import java.awt.Color;
@@ -83,21 +84,26 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
                     charXY.y -= 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
+                    
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
                     charXY.x -= 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
                     charXY.y += 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
                     charXY.x += 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             }
         }
@@ -138,6 +144,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     @Override
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
+        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_coin.wav"));
         currentMap = portal.getDestinationMap();
     }
     //</editor-fold>
