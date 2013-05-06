@@ -21,7 +21,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private Map level_one_map;
     private Map currentMap;
     private Character character;
-    private Point charXY = this.currentMap.getCellLocation(new Point(0, 0));
+    private Point charXY = this.level_one_map.getGrid().getCellPosition(22,10);
     private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
@@ -29,7 +29,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
-
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
@@ -139,6 +138,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
         currentMap = portal.getDestinationMap();
+        charXY = this.currentMap.getGrid().getCellPosition(portal.getDestinationLocation());
     }
     //</editor-fold>
 }

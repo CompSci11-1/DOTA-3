@@ -241,7 +241,6 @@ public class Map {
     private Point position = new Point(0, 0);
     private boolean showGrid;
     private boolean showGridEditor;
-    
     /**
      * @return the position of the image
      */
