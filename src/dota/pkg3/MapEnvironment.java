@@ -17,7 +17,7 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
-    
+
     private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
@@ -26,7 +26,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
-    
+    private int stepcount;
+
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
@@ -36,14 +37,14 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
         character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
-        
+
 //            public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
 
         MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 13));
         MapFactory.addPortal(storeMap, new Point(5, 13), level_one_map, new Point(40, 4));
 //        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
     }
-    
+
     @Override
     public void timerTaskHandler() {
         if (this.moved != null) {
@@ -89,28 +90,63 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         if (!(this.moved)) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
+                    if (this.stepcount == 1) {
+                        this.stepcount = 0;
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/rear_step_1.png"));
+                    } else {
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/rear_step_2.png"));
+                        this.stepcount += 1;
+                    }
+
                     charXY.y -= 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
+
+                    if (this.stepcount == 1) {
+                        this.stepcount = 0;
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/left_step_1.png"));
+                    } else {
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/left_step_2.png"));
+                        this.stepcount += 1;
+                    }
+
                     charXY.x -= 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
+
+                    if (this.stepcount == 1) {
+                        this.stepcount = 0;
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/front_step_1.png"));
+                    } else {
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/front_step_2.png"));
+                        this.stepcount += 1;
+                    }
+
                     charXY.y += 16;
                     this.moved = true;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
+
+                    if (this.stepcount == 1) {
+                        this.stepcount = 0;
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
+                    } else {
+                        character = new Character(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
+                        this.stepcount += 1;
+                    }
+
                     charXY.x += 16;
                     this.moved = true;
                 }
             }
         }
     }
-    
+
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
         if (currentMap != null) {
             System.out.printf("Validating system coordinate [%d, %d]\n", systemCoordinate.x, systemCoordinate.y);
@@ -119,22 +155,32 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
             currentMap.validateLocation(cellLocation);
         }
     }
-    
+
     @Override
     public void keyReleasedHandler(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            character = new Character(ResourceTools.loadImageFromResource("Resources/rear_idle.png"));
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            character = new Character(ResourceTools.loadImageFromResource("Resources/left_idle.png"));
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            character = new Character(ResourceTools.loadImageFromResource("Resources/right_idle.png"));
+        }
+
 //        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void environmentMouseClicked(MouseEvent e) {
         if (e.isControlDown()) {
             validateCellAtSystemCoordinate(e.getPoint());
         }
     }
-    
+
     @Override
     public void paintEnvironment(Graphics graphics) {
-        
+
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
