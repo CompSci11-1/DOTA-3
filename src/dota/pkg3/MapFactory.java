@@ -333,8 +333,7 @@ public class MapFactory {
 
         Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
 
-        addPortal(levelOneMap, new Point(40, 4), getStoreMap(), new Point(6,6));
-        addPortal(getStoreMap(), new Point(2,5),getLevelOneMainMap(),new Point(10,16));
+//        addPortal(levelOneMap, new Point(40, 4), getStoreMap(), new Point(6,6));
         //add other portals here...
 
         return levelOneMap;

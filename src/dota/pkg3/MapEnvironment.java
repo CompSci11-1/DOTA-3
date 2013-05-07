@@ -17,24 +17,29 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
-
+    
+    private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
     private Character character;
-    private Point charXY = this.level_one_map.getGrid().getCellPosition(22,10);
+    private Point charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
     private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
-
+    
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
+        storeMap = MapFactory.getStoreMap();
+        storeMap.setPortalHandler(this);
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
-        character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));;
+        character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));
+        MapFactory.addPortal(level_one_map, level_one_map.getGrid().getCellPosition(16, 16), storeMap, this.storeMap.getGrid().getCellPosition(5, 14));
+        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
     }
-
+    
     @Override
     public void timerTaskHandler() {
         if (this.moved != null) {
@@ -101,7 +106,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
             }
         }
     }
-
+    
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
         if (currentMap != null) {
             System.out.printf("Validating system coordinate [%d, %d]\n", systemCoordinate.x, systemCoordinate.y);
@@ -110,19 +115,19 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
             currentMap.validateLocation(cellLocation);
         }
     }
-
+    
     @Override
     public void keyReleasedHandler(KeyEvent e) {
 //        throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void environmentMouseClicked(MouseEvent e) {
         if (e.isControlDown()) {
             validateCellAtSystemCoordinate(e.getPoint());
         }
     }
-
+    
     @Override
     public void paintEnvironment(Graphics graphics) {
         
