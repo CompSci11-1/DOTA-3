@@ -17,7 +17,7 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
-
+private Map houseMap;
     private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
@@ -31,6 +31,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
+        houseMap = MapFactory.getHouseMap();
+        houseMap.setPortalHandler(this);
         storeMap = MapFactory.getStoreMap();
         storeMap.setPortalHandler(this);
         level_one_map = MapFactory.getLevelOneMainMap();
@@ -40,8 +42,9 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
 //            public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
 
-        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 13));
-        MapFactory.addPortal(storeMap, new Point(5, 13), level_one_map, new Point(40, 4));
+        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 10));
+        MapFactory.addPortal(storeMap, new Point(5, 10), level_one_map, new Point(40, 5));
+        MapFactory.addPortal(level_one_map, new Point(16,10), houseMap, new Point(3,3));
 //        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
     }
 
