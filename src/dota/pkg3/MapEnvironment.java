@@ -18,6 +18,11 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
+      private Map forestEntrance;
+    private Map campus;
+    private Map forest;
+    private Map mapToTown;
+    private Map townWithForest;
 private Map houseMap;
     private Map storeMap;
     private Map level_one_map;
