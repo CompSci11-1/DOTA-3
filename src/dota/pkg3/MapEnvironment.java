@@ -32,6 +32,16 @@ private Map houseMap;
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
+         campus = MapFactory.getCampus();
+        campus.setPortalHandler(this);
+        forestEntrance = MapFactory.getForestEntrance();
+        forestEntrance.setPortalHandler(this);
+        forest = MapFactory.getForest();
+        forest.setPortalHandler(this);
+        townWithForest = MapFactory.getTownWithForest();
+        townWithForest.setPortalHandler(this);
+        mapToTown = MapFactory.getMapToTown();
+        mapToTown.setPortalHandler(this);
         houseMap = MapFactory.getHouseMap();
         houseMap.setPortalHandler(this);
         storeMap = MapFactory.getStoreMap();
