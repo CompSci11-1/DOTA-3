@@ -4,6 +4,7 @@
  */
 package dota.pkg3;
 
+import audio.AudioPlayer;
 import environment.Environment;
 import image.ResourceTools;
 import java.awt.Color;
@@ -40,12 +41,12 @@ private Map houseMap;
         currentMap = level_one_map;
         character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
 
-//            public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
-
         MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 11));
         MapFactory.addPortal(storeMap, new Point(5, 11), level_one_map, new Point(40, 5));
         MapFactory.addPortal(level_one_map, new Point(16,10), houseMap, new Point(3,3));
-//        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
+
+        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
+
     }
 
     @Override
@@ -103,6 +104,7 @@ private Map houseMap;
 
                     charXY.y -= 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
@@ -149,7 +151,7 @@ private Map houseMap;
             }
         }
     }
-
+    
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
         if (currentMap != null) {
             System.out.printf("Validating system coordinate [%d, %d]\n", systemCoordinate.x, systemCoordinate.y);
