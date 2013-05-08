@@ -18,6 +18,11 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
+      private Map forestEntrance;
+    private Map campus;
+    private Map forest;
+    private Map mapToTown;
+    private Map townWithForest;
 private Map houseMap;
     private Map storeMap;
     private Map level_one_map;
@@ -32,6 +37,16 @@ private Map houseMap;
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
+         campus = MapFactory.getCampus();
+        campus.setPortalHandler(this);
+        forestEntrance = MapFactory.getForestEntrance();
+        forestEntrance.setPortalHandler(this);
+        forest = MapFactory.getForest();
+        forest.setPortalHandler(this);
+        townWithForest = MapFactory.getTownWithForest();
+        townWithForest.setPortalHandler(this);
+        mapToTown = MapFactory.getMapToTown();
+        mapToTown.setPortalHandler(this);
         houseMap = MapFactory.getHouseMap();
         houseMap.setPortalHandler(this);
         storeMap = MapFactory.getStoreMap();

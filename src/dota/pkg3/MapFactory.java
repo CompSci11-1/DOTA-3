@@ -33,7 +33,7 @@ public class MapFactory {
     }
 
     public static Map getLevelOneMainMap() {
-        Image background = ResourceTools.loadImageFromResource("Resources/Route (2).bmp");
+        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
         Dimension gridCellSize = new Dimension(16, 16);
         Dimension gridSize = new Dimension(20, 70);
 
@@ -417,6 +417,116 @@ public class MapFactory {
         Image background = ResourceTools.loadImageFromResource("Resources/generic_house.DIB");
         Dimension gridCellSize = new Dimension(16, 16);
         Dimension gridSize = new Dimension(20, 20);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
+        public static Map getMapToTown() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/level_one_map_to_town.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
+     public static Map getTownWithForest() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/town_to_forest.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
+    public static Map getForest() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/illusion_forest.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
+    public static Map getForestEntrance() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/forest_entrance.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
+    public static Map getCampus() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/brentwood_campus.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
 
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
    obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
