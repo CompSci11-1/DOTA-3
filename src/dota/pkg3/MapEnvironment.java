@@ -40,8 +40,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
 //            public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
 
-        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 13));
-        MapFactory.addPortal(storeMap, new Point(5, 13), level_one_map, new Point(40, 4));
+        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 10));
+        MapFactory.addPortal(storeMap, new Point(5, 10), level_one_map, new Point(40, 5));
 //        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
     }
 
