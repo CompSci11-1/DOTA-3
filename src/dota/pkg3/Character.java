@@ -24,9 +24,23 @@ public class Character {
     }
     public void drawCharacter (Graphics graphics,Point charXY){
 //        graphics.drawImage(ResourceTools.loadImageFromResource("Resources/Char1.png"), charX -1, charY -15,20,32, null);
-        graphics.drawImage(image, charXY.x -1, charXY.y -15,20,32, null);
+        graphics.drawImage(getImage(), charXY.x -1, charXY.y -15,20,32, null);
         
         
+    }
+
+    /**
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
     }
     
 }

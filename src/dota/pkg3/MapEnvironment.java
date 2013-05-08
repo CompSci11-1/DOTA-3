@@ -42,8 +42,8 @@ private Map houseMap;
 
 //            public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation){
 
-        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 10));
-        MapFactory.addPortal(storeMap, new Point(5, 10), level_one_map, new Point(40, 5));
+        MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 11));
+        MapFactory.addPortal(storeMap, new Point(5, 11), level_one_map, new Point(40, 5));
         MapFactory.addPortal(level_one_map, new Point(16,10), houseMap, new Point(3,3));
 //        MapFactory.addPortal(storeMap, this.storeMap.getGrid().getCellPosition(5, 14), level_one_map, level_one_map.getGrid().getCellPosition(16, 16));
     }
@@ -95,9 +95,9 @@ private Map houseMap;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/rear_step_1.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/rear_step_1.png"));
                     } else {
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/rear_step_2.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/rear_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -109,9 +109,9 @@ private Map houseMap;
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/left_step_1.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/left_step_1.png"));
                     } else {
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/left_step_2.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/left_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -123,9 +123,9 @@ private Map houseMap;
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/front_step_1.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/front_step_1.png"));
                     } else {
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/front_step_2.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/front_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -137,9 +137,9 @@ private Map houseMap;
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
                     } else {
-                        character = new Character(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
+                         character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -162,13 +162,13 @@ private Map houseMap;
     @Override
     public void keyReleasedHandler(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            character = new Character(ResourceTools.loadImageFromResource("Resources/rear_idle.png"));
+            character.setImage(ResourceTools.loadImageFromResource("Resources/rear_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            character = new Character(ResourceTools.loadImageFromResource("Resources/left_idle.png"));
+            character.setImage(ResourceTools.loadImageFromResource("Resources/left_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+            character.setImage(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            character = new Character(ResourceTools.loadImageFromResource("Resources/right_idle.png"));
+            character.setImage(ResourceTools.loadImageFromResource("Resources/right_idle.png"));
         }
 
 //        throw new UnsupportedOperationException("Not supported yet.");
