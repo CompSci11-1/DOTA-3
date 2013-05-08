@@ -414,7 +414,7 @@ public class MapFactory {
     }
     public static Map getHouseMap() {
         //change this image to the store when you get one...
-        Image background = ResourceTools.loadImageFromResource("Resources/House with grid (2).bmp");
+        Image background = ResourceTools.loadImageFromResource("Resources/generic_house.DIB");
         Dimension gridCellSize = new Dimension(16, 16);
         Dimension gridSize = new Dimension(20, 20);
 
