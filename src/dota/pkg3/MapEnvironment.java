@@ -31,6 +31,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
 
+        // AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.mp3"));
+
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
@@ -77,6 +79,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                     System.out.println("Toggle Grid Editor");
                     currentMap.toggleGridEditor();
                 }
+
+
             }
         }
         if (!(this.moved)) {
@@ -85,7 +89,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                     charXY.y -= 16;
                     this.moved = true;
                     AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
-                    
+
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
@@ -105,6 +109,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                     this.moved = true;
                     AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
+            } else if (e.getKeyCode() == KeyEvent.VK_1) {
+                 AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
             }
         }
     }
@@ -132,7 +138,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     @Override
     public void paintEnvironment(Graphics graphics) {
-        
+
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
