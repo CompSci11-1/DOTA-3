@@ -136,7 +136,7 @@ public class Map {
     
     public void obstacleEvent(MapObstacle obstacle){
         if(obstacle.getType() == ObstacleType.BUSH){
-//             AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/grass.wav"));
+             AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/grass.wav"));
 
         }
         if(obstacle.getType() == ObstacleType.WALL){
