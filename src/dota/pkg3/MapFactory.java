@@ -40,6 +40,7 @@ public class MapFactory {
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
       obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(1, 5), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(7, 6), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(2, 5), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(3, 5), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(-1, 6), ObstacleType.WALL));

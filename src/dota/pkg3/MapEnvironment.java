@@ -155,6 +155,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.x -= 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
@@ -169,6 +170,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.y += 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
@@ -179,10 +181,12 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                     } else {
                         character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
                         this.stepcount += 1;
+                        
                     }
 
                     charXY.x += 16;
                     this.moved = true;
+                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
                 }
             }
         }
