@@ -18,12 +18,13 @@ import java.awt.event.MouseEvent;
  * @author kevin.lawrence
  */
 public class MapEnvironment extends Environment implements PortalEventHandler {
-      private Map forestEntrance;
+
+    private Map forestEntrance;
     private Map campus;
     private Map forest;
     private Map mapToTown;
     private Map townWithForest;
-private Map houseMap;
+    private Map houseMap;
     private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
@@ -37,7 +38,7 @@ private Map houseMap;
     @Override
     public void initializeEnvironment() {
         setBackground(Color.BLACK);
-         campus = MapFactory.getCampus();
+        campus = MapFactory.getCampus();
         campus.setPortalHandler(this);
         forestEntrance = MapFactory.getForestEntrance();
         forestEntrance.setPortalHandler(this);
@@ -58,7 +59,27 @@ private Map houseMap;
 
         MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 11));
         MapFactory.addPortal(storeMap, new Point(5, 11), level_one_map, new Point(40, 5));
-        MapFactory.addPortal(level_one_map, new Point(16,10), houseMap, new Point(3,3));
+        MapFactory.addPortal(level_one_map, new Point(40, 15), houseMap, new Point(6, 9));
+        MapFactory.addPortal(houseMap, new Point(6, 9), level_one_map, new Point(40, 15));
+        MapFactory.addPortal(level_one_map, new Point(72, 10), mapToTown, new Point(-1, 9));
+        MapFactory.addPortal(level_one_map, new Point(72, 9), mapToTown, new Point(-1, 8));
+        MapFactory.addPortal(level_one_map, new Point(72, 11), mapToTown, new Point(-1, 10));
+        MapFactory.addPortal(mapToTown, new Point(-1, 10), level_one_map, new Point(72, 11));
+        MapFactory.addPortal(mapToTown, new Point(-1, 9), level_one_map, new Point(72, 10));
+        MapFactory.addPortal(mapToTown, new Point(-1, 8), level_one_map, new Point(72, 9));
+        MapFactory.addPortal(mapToTown, new Point(57, 8), campus, new Point(-1, 10));
+        MapFactory.addPortal(mapToTown, new Point(57, 9), campus, new Point(-1, 11));
+        MapFactory.addPortal(campus, new Point(-1, 10), mapToTown, new Point(57, 8));
+        MapFactory.addPortal(campus, new Point(-1, 11), mapToTown, new Point(57, 9));
+        MapFactory.addPortal(level_one_map, new Point(20, -1), forest, new Point(17, 44));
+        MapFactory.addPortal(level_one_map, new Point(19, -1), forest, new Point(16, 44));
+        MapFactory.addPortal(forest, new Point(16, 44), level_one_map, new Point(19, -1));
+        MapFactory.addPortal(forest, new Point(17, 44), level_one_map, new Point(20, -1));
+        MapFactory.addPortal(forest, new Point(14, -1), forestEntrance, new Point(10, 30));
+        MapFactory.addPortal(forest, new Point(15, -1), forestEntrance, new Point(11, 30));
+        MapFactory.addPortal(forestEntrance, new Point(11, 30), forest, new Point(15, -1));
+        MapFactory.addPortal(forestEntrance, new Point(10, 30), forest, new Point(14, -1));
+
 
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
 
@@ -156,7 +177,7 @@ private Map houseMap;
                         this.stepcount = 0;
                         character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
                     } else {
-                         character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
+                        character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -166,7 +187,7 @@ private Map houseMap;
             }
         }
     }
-    
+
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
         if (currentMap != null) {
             System.out.printf("Validating system coordinate [%d, %d]\n", systemCoordinate.x, systemCoordinate.y);

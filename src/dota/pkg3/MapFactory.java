@@ -297,8 +297,6 @@ public class MapFactory {
         obstacles.add(new MapObstacle(new Point(47, 12), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(47, 13), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(47, 14), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(47, 15), ObstacleType.WALL));
-        obstacles.add(new MapObstacle(new Point(47, 16), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(47, 17), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(47, 18), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
