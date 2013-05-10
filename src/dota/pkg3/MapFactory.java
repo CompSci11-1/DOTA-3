@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import map.Obstacle;
 
 /**
  *
@@ -481,11 +482,12 @@ public class MapFactory {
         //change this image to the store when you get one...
         Image background = ResourceTools.loadImageFromResource("Resources/illusion_forest.png");
         Dimension gridCellSize = new Dimension(16, 16);
-        Dimension gridSize = new Dimension(100, 30);
+        Dimension gridSize = new Dimension(49, 48);
 
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
    obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
-        
+   obstacles.add(new MapObstacle(new Point(13,0), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13,0), ObstacleType.WALL));     
 
         //add other obstacles here...
 
@@ -543,4 +545,5 @@ public class MapFactory {
 
         return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
+       
 }
