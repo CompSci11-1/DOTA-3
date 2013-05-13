@@ -545,5 +545,28 @@ public class MapFactory {
 
         return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
     }
+    public static Map getTown_To_Forest() {
+        //change this image to the store when you get one...
+        Image background = ResourceTools.loadImageFromResource("Resources/town_to_forest.png");
+        Dimension gridCellSize = new Dimension(16, 16);
+        Dimension gridSize = new Dimension(100, 30);
+
+        ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+   obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 30), ObstacleType.WALL));
+        
+
+        //add other obstacles here...
+
+
+        ArrayList<Point> items = new ArrayList<Point>();
+
+        //add other items here
+
+        ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
+
+
+        return getMap(background, gridCellSize, gridSize, obstacles, portals, items);
+    }
        
 }
