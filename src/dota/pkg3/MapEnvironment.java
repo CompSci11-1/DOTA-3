@@ -35,6 +35,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
+    private String MOVE_SOUND = "sounds/step.wav";
 
     @Override
     public void initializeEnvironment() {
@@ -144,7 +145,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.y -= 16;
                     this.moved = true;
-                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
+                    AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
@@ -159,7 +160,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.x -= 16;
                     this.moved = true;
-                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
+                    AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
@@ -174,7 +175,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.y += 16;
                     this.moved = true;
-                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
+                    AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
@@ -190,7 +191,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     charXY.x += 16;
                     this.moved = true;
-                    AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/nsmb_fireball.wav"));
+                    AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             }
         }
