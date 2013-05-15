@@ -35,7 +35,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
-    private String MOVE_SOUND = "sounds/step.wav"
+    private String MOVE_SOUND = "sounds/step.wav";
 
     @Override
     public void initializeEnvironment() {
