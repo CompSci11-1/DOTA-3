@@ -2283,6 +2283,7 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
    obstacles.add(new MapObstacle(new Point(4, 17), ObstacleType.WALL));
    obstacles.add(new MapObstacle(new Point(28, 29), ObstacleType.WALL));
    obstacles.add(new MapObstacle(new Point(31, 32), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(18, 16), ObstacleType.WALL));
    
    
    
