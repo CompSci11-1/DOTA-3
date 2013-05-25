@@ -58,14 +58,12 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         currentMap = level_one_map;
         character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
 
-<<<<<<< HEAD
+
         MapFactory.addPortal(forestEntrance, new Point(16, -1), townWithForest, new Point(8, 40));
         MapFactory.addPortal(forestEntrance, new Point(15, -1), townWithForest, new Point(7, 40));
         MapFactory.addPortal(townWithForest, new Point(8, 40), forestEntrance, new Point(16, -1));
         MapFactory.addPortal(townWithForest, new Point(7, 40), forestEntrance, new Point(15, -1));
-=======
-       MapFactory.addPortal(level_one_map, new Point(16, 10), townToForest, new Point(1, 29));
->>>>>>> new changes to map
+
         MapFactory.addPortal(level_one_map, new Point(40, 4), storeMap, new Point(5, 11));
         MapFactory.addPortal(storeMap, new Point(5, 11), level_one_map, new Point(40, 5));
         MapFactory.addPortal(level_one_map, new Point(40, 15), houseMap, new Point(6, 9));
