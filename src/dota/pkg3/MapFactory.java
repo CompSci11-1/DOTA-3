@@ -319,6 +319,27 @@ public class MapFactory {
         obstacles.add(new MapObstacle(new Point(59, 19), ObstacleType.WATER));
         obstacles.add(new MapObstacle(new Point(60, 19), ObstacleType.WATER));
         obstacles.add(new MapObstacle(new Point(61, 19), ObstacleType.WATER));
+        obstacles.add(new MapObstacle(new Point(39, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(38, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 15), ObstacleType.WALL));        
+obstacles.add(new MapObstacle(new Point(41, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(42, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 14), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 13), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 12), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 15), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 14), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 13), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 12), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(37, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(38, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(39, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(40, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(41, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(42, 11), ObstacleType.WALL));
+obstacles.add(new MapObstacle(new Point(43, 11), ObstacleType.WALL));
 
         //add other obstacles here...
 
@@ -426,6 +447,7 @@ obstacles.add(new MapObstacle(new Point(10, 5), ObstacleType.WALL));
 obstacles.add(new MapObstacle(new Point(8, 5), ObstacleType.WALL));
 obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
 
+
         //add other obstacles here...
 
 
@@ -448,8 +470,64 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         Dimension gridSize = new Dimension(20, 20);
 
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
-        obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.WALL));
-
+//Plants
+   obstacles.add(new MapObstacle(new Point(0, 7), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(0, 8), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(12, 7), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(12, 8), ObstacleType.WALL));
+   //Table
+   obstacles.add(new MapObstacle(new Point(6, 4), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(7, 4), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(6, 5), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
+   //Walls
+   obstacles.add(new MapObstacle(new Point(0, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(1, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(2, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(3, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(4, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(5, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(6, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(7, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(8, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(9, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(10, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(11, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(12, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 0), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 2), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 3), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 4), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 5), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 6), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 7), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 8), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(13, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 0), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 1), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 2), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 3), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 4), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 5), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 6), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 7), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(-1, 8), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(0, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(1, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(2, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(3, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(4, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(5, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(7, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(8, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(9, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(10, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(11, 9), ObstacleType.WALL));
+   obstacles.add(new MapObstacle(new Point(12, 9), ObstacleType.WALL));
+        
 
         //add other obstacles here...
 
