@@ -57,7 +57,7 @@ public class DotaEnvironment extends Environment {
 
         this.stone = new Wall();
         this.stone.start(this.masterGrid);
-        this.character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));
+//        this.character = new Character(ResourceTools.loadImageFromResource("Resources/Char1.png"));
         this.route1 = new Route1();
 //        this.stone.setColor(Color.black);
     }
