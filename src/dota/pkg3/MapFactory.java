@@ -1174,6 +1174,8 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         Dimension gridSize = new Dimension(49, 48);
 
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
+        obstacles.add(new MapObstacle(new Point(36, 38), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(37, 38), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(0, 5), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(13, 0), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(13, 1), ObstacleType.BUSH));
@@ -1615,6 +1617,7 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         Image background = ResourceTools.loadImageFromResource("Resources/forest_entrance.png");
         Dimension gridCellSize = new Dimension(16, 16);
         Dimension gridSize = new Dimension(100, 30);
+        
 
         ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
 //<editor-fold defaultstate="collapsed" desc="Forest Entrance Objects">
@@ -1819,6 +1822,28 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(33, 2), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(34, 1), ObstacleType.BUSH));
         obstacles.add(new MapObstacle(new Point(34, 0), ObstacleType.BUSH));
+        obstacles.add(new MapObstacle(new Point(10, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(11, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(12, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(13, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(14, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(17, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(18, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(19, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(20, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(21, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(22, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(23, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(24, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(25, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(26, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(27, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(28, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(29, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(30, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(31, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(32, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(33, 0), ObstacleType.WALL));
         //</editor-fold>
 
 
@@ -2078,6 +2103,9 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(-1, 12), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(-1, 13), ObstacleType.WALL));
         obstacles.add(new MapObstacle(new Point(-1, 14), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(11, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(12, 0), ObstacleType.WALL));
+        obstacles.add(new MapObstacle(new Point(13, 0), ObstacleType.WALL));
 
 
    
