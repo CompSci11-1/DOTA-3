@@ -88,7 +88,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         MapFactory.addPortal(forestEntrance, new Point(10, 30), forest, new Point(14, -1));
 
 
-       // AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
+        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
 
     }
 
@@ -109,7 +109,39 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
-
+ if (e.getKeyCode() == KeyEvent.VK_1) {
+ this.currentMap = this.level_one_map;
+ this.charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_2) {
+ this.currentMap = this.forest;
+ this.charXY = this.forest.getGrid().getCellPosition(22, 10);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_3) {
+ this.currentMap = this.forestEntrance;
+ this.charXY = this.forestEntrance.getGrid().getCellPosition(24, 6);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_4) {
+ this.currentMap = this.townWithForest;
+ this.charXY = this.townWithForest.getGrid().getCellPosition(22, 10);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_5) {
+ this.currentMap = this.mapToTown;
+ this.charXY = this.mapToTown.getGrid().getCellPosition(22, 10);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_6) {
+ this.currentMap = this.campus;
+ this.charXY = this.campus.getGrid().getCellPosition(22, 10);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_7) {
+ this.currentMap = this.storeMap;
+ this.charXY = this.storeMap.getGrid().getCellPosition(5, 5);
+ }
+ if (e.getKeyCode() == KeyEvent.VK_8) {
+ this.currentMap = this.houseMap;
+ this.charXY = this.houseMap.getGrid().getCellPosition(3, 5);
+ }
+        
         //just some event testing code... remove later!
         if (e.isControlDown()) {
             if (e.getKeyCode() == KeyEvent.VK_M) {
