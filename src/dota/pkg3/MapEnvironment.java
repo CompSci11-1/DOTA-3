@@ -8,10 +8,14 @@ import audio.AudioPlayer;
 import environment.Environment;
 import image.ResourceTools;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /**
  *
@@ -28,16 +32,26 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
-    private Character character;
     private Point charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
     private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
+    private Character character;
+    private Enemy enemy;
+    private ArrayList<Attack> moves;
+    private ArrayList<Attack> enemyMoves;
     private String MOVE_SOUND = "sounds/step.wav";
 
     @Override
     public void initializeEnvironment() {
+        enemyMoves = new ArrayList<Attack>();
+        enemyMoves.add(new Attack("Bite", 10, 15, 1));
+        moves = new ArrayList<Attack>();
+        moves.add(new Attack("Flame", 10, 30, .5));
+        enemy = new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+        character = new Character(100, moves,ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+        enemy = enemy.getBlob();
         setBackground(Color.BLACK);
         campus = MapFactory.getCampus();
         campus.setPortalHandler(this);
@@ -56,7 +70,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
-        character = new Character(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
 
 
         MapFactory.addPortal(forestEntrance, new Point(16, -1), townWithForest, new Point(8, 40));
@@ -151,8 +164,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_L) {
                 if (currentMap != null) {
-//                    System.out.println("Validate Location");
-//                    currentMap.validateLocation(new Point(0, 0));
+                    newCombatVisualizer();
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_G) {
                 if (currentMap != null) {
@@ -229,6 +241,23 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 }
             }
         }
+    }
+    
+    private void newCombatVisualizer(){
+        JDialog dialog;
+        dialog = new JDialog();
+        
+        dialog.setModal(true);
+        dialog.setTitle("Battle!");
+        
+        CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy);
+        dialog.add(cv);
+        dialog.setAlwaysOnTop(true);
+        
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setSize(new Dimension(800, 600));
+        dialog.setVisible(true);
+        dialog.setFocusable(true);
     }
 
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {

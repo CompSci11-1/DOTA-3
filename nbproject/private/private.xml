@@ -2,12 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/Character.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/MainMenu.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/Dota3.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/DotaEnvironment.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/Wall.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/Route1.java</file>
+        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/MapEnvironment.java</file>
         <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/MapFactory.java</file>
     </open-files>
 </project-private>
