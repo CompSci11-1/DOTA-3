@@ -101,11 +101,10 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         MapFactory.addPortal(forestEntrance, new Point(10, 30), forest, new Point(14, -1));
 
 
-<<<<<<< HEAD
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
-=======
+
        //AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
->>>>>>> phils_work
+
 
     }
 
