@@ -22,7 +22,7 @@ public class Dota3 {
      */
     public static void main(String[] args) {
         newWindow();
-        System.out.println("ericks test");
+
     }
     
 
