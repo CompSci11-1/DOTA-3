@@ -101,11 +101,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         MapFactory.addPortal(forestEntrance, new Point(10, 30), forest, new Point(14, -1));
 
 
-<<<<<<< HEAD
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
-=======
-       //AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
->>>>>>> phils_work
 
     }
 
@@ -310,7 +306,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
         currentMap = portal.getDestinationMap();
-        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
         charXY = this.currentMap.getGrid().getCellPosition(portal.getDestinationLocation());
     }
     //</editor-fold>
