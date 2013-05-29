@@ -50,7 +50,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         moves = new ArrayList<Attack>();
         moves.add(new Attack("Flame", 10, 30, .5));
         enemy = new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png"));
-        character = new Character(100, moves,ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+        character = new Character(100, moves, ResourceTools.loadImageFromResource("Resources/front_idle.png"));
         enemy = enemy.getBlob();
         setBackground(Color.BLACK);
         campus = MapFactory.getCampus();
@@ -70,7 +70,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
         currentMap = level_one_map;
-
 
         MapFactory.addPortal(forestEntrance, new Point(16, -1), townWithForest, new Point(8, 40));
         MapFactory.addPortal(forestEntrance, new Point(15, -1), townWithForest, new Point(7, 40));
@@ -103,7 +102,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
 
-       //AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
+        //AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/compsci1.wav"));
 
 
     }
@@ -125,39 +124,39 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
- if (e.getKeyCode() == KeyEvent.VK_1) {
- this.currentMap = this.level_one_map;
- this.charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
- }
- if (e.getKeyCode() == KeyEvent.VK_2) {
- this.currentMap = this.forest;
- this.charXY = this.forest.getGrid().getCellPosition(22, 10);
- }
- if (e.getKeyCode() == KeyEvent.VK_3) {
- this.currentMap = this.forestEntrance;
- this.charXY = this.forestEntrance.getGrid().getCellPosition(24, 6);
- }
- if (e.getKeyCode() == KeyEvent.VK_4) {
- this.currentMap = this.townWithForest;
- this.charXY = this.townWithForest.getGrid().getCellPosition(22, 10);
- }
- if (e.getKeyCode() == KeyEvent.VK_5) {
- this.currentMap = this.mapToTown;
- this.charXY = this.mapToTown.getGrid().getCellPosition(22, 10);
- }
- if (e.getKeyCode() == KeyEvent.VK_6) {
- this.currentMap = this.campus;
- this.charXY = this.campus.getGrid().getCellPosition(22, 10);
- }
- if (e.getKeyCode() == KeyEvent.VK_7) {
- this.currentMap = this.storeMap;
- this.charXY = this.storeMap.getGrid().getCellPosition(5, 5);
- }
- if (e.getKeyCode() == KeyEvent.VK_8) {
- this.currentMap = this.houseMap;
- this.charXY = this.houseMap.getGrid().getCellPosition(3, 5);
- }
-        
+        if (e.getKeyCode() == KeyEvent.VK_1) {
+            this.currentMap = this.level_one_map;
+            this.charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_2) {
+            this.currentMap = this.forest;
+            this.charXY = this.forest.getGrid().getCellPosition(22, 10);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_3) {
+            this.currentMap = this.forestEntrance;
+            this.charXY = this.forestEntrance.getGrid().getCellPosition(24, 6);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_4) {
+            this.currentMap = this.townWithForest;
+            this.charXY = this.townWithForest.getGrid().getCellPosition(22, 10);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_5) {
+            this.currentMap = this.mapToTown;
+            this.charXY = this.mapToTown.getGrid().getCellPosition(22, 10);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_6) {
+            this.currentMap = this.campus;
+            this.charXY = this.campus.getGrid().getCellPosition(22, 10);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_7) {
+            this.currentMap = this.storeMap;
+            this.charXY = this.storeMap.getGrid().getCellPosition(5, 5);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_8) {
+            this.currentMap = this.houseMap;
+            this.charXY = this.houseMap.getGrid().getCellPosition(3, 5);
+        }
+
         //just some event testing code... remove later!
         if (e.isControlDown()) {
             if (e.getKeyCode() == KeyEvent.VK_M) {
@@ -245,18 +244,18 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
             }
         }
     }
-    
-    private void newCombatVisualizer(){
+
+    private void newCombatVisualizer() {
         JDialog dialog;
         dialog = new JDialog();
-        
+
         dialog.setModal(true);
         dialog.setTitle("Battle!");
-        
+
         CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy);
         dialog.add(cv);
         dialog.setAlwaysOnTop(true);
-        
+
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.setSize(new Dimension(800, 600));
         dialog.setVisible(true);
@@ -309,9 +308,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
         currentMap = portal.getDestinationMap();
-        
-        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
         charXY = this.currentMap.getGrid().getCellPosition(portal.getDestinationLocation());
+        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
     }
     //</editor-fold>
 }

@@ -198,6 +198,7 @@ public class Map {
         
         if (hitTest(cellLocation, getItems())) {
             System.out.println("Hey... found something!");
+            
             //put an event handler here!
             if (getItemHandler() != null) {
                 getItemHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
