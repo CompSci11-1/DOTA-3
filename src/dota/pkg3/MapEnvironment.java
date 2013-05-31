@@ -305,6 +305,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     @Override
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
+        AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
         currentMap = portal.getDestinationMap();
         charXY = this.currentMap.getGrid().getCellPosition(portal.getDestinationLocation());
     }
