@@ -64,8 +64,27 @@ public class CombatPanel extends javax.swing.JPanel {
         }
     }
     
+    private void showMoves(Attack friendlyAttack, int friendlyDamage, Attack enemyAttack, int enemyDamage, String enemyName){
+        this.setjlblMoves6(this.getjlblMoves4());
+        this.setjlblMoves4(this.getjlblMoves2());
+        if(friendlyDamage >= 0){
+        this.setjlblMoves2("You used " + friendlyAttack.getName() + " dealing " + friendlyDamage);
+        } else {
+            this.setjlblMoves2("You missed!");
+        }
+        
+        this.setjlblMoves5(this.getjlblMoves3());
+        this.setjlblMoves3(this.getjlblMoves1());
+        if(enemyDamage >= 0){
+        this.setjlblMoves1(enemyName + " used " + enemyAttack.getName() + " dealing " + enemyDamage);
+        } else {
+            this.setjlblMoves1(enemyName + " used " + enemyAttack.getName() + " and missed!");
+        }
+    }
+    
     private void processAttack(){
         if (jList1.getSelectedIndex() != -1){
+            Attack friendlyAttack = this.character.getAttacks().get(jList1.getSelectedIndex());
             int friendlyDamage = this.character.getAttacks().get(jList1.getSelectedIndex()).attack(this.character.getAttacks().get(jList1.getSelectedIndex()));
             if (friendlyDamage != -1){
                 this.getEnemy().setHealth(this.getEnemy().getHealth() - friendlyDamage);
@@ -73,15 +92,17 @@ public class CombatPanel extends javax.swing.JPanel {
             } else {
                 System.out.println("miss!");
             }
-            int enemyAttack = this.getEnemy().randomAttack();
-            System.out.println("enemy attack:" + enemyAttack);
-            int enemyDamage = this.getEnemy().getAttacks().get(enemyAttack).attack(this.enemy.getAttack(enemyAttack));
+            int enemyAttackNumber = this.getEnemy().randomAttack();
+            System.out.println("enemy attack:" + enemyAttackNumber);
+            Attack enemyAttack = this.getEnemy().getAttacks().get(enemyAttackNumber);
+            int enemyDamage = this.getEnemy().getAttacks().get(enemyAttackNumber).attack(this.enemy.getAttack(enemyAttackNumber));
             if (enemyDamage != -1){
             this.character.setHealth(this.character.getHealth() - enemyDamage);
             jlblYourHealth.setText(String.valueOf(this.character.getHealth()));
             } else {
                 System.out.println("enemy miss!");
             }
+            showMoves(friendlyAttack, friendlyDamage, enemyAttack, enemyDamage, this.getEnemy().getName());
             
 //            System.out.printf("Selected attack = #%d %s\n",jList1.getSelectedIndex(), jList1.getSelectedValue().toString());
 //            System.out.printf("Look up attack as %s\n", this.moves.get(jList1.getSelectedIndex()).getDisplay());
@@ -118,6 +139,13 @@ public class CombatPanel extends javax.swing.JPanel {
         jlblEnemyImage = new javax.swing.JLabel();
         jlblEnemyHealth = new javax.swing.JLabel();
         jlblYourHealth = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jlblMoves6 = new javax.swing.JLabel();
+        jlblMoves5 = new javax.swing.JLabel();
+        jlblMoves4 = new javax.swing.JLabel();
+        jlblMoves3 = new javax.swing.JLabel();
+        jlblMoves2 = new javax.swing.JLabel();
+        jlblMoves1 = new javax.swing.JLabel();
 
         jlblEnemyName.setText("jLabel1");
 
@@ -197,36 +225,69 @@ public class CombatPanel extends javax.swing.JPanel {
 
         jlblYourHealth.setText("jLabel1");
 
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jlblMoves6)
+                    .add(jlblMoves5)
+                    .add(jlblMoves4)
+                    .add(jlblMoves3)
+                    .add(jlblMoves2)
+                    .add(jlblMoves1))
+                .addContainerGap(162, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jlblMoves6)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jlblMoves5)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jlblMoves4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jlblMoves3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jlblMoves2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jlblMoves1)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(54, 54, 54)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(195, 195, 195)
-                                .add(jlblEnemyImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 232, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(109, 109, 109)
+                        .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
-                        .add(29, 29, 29)
-                        .add(jlblEnemyName)
-                        .add(71, 71, 71)
-                        .add(jlblEnemyHealth)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jlblYourHealth)))
-                .add(55, 55, 55))
+                        .add(201, 201, 201)
+                        .add(jlblEnemyImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 232, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .add(35, 35, 35)
+                .add(jlblEnemyName)
+                .add(71, 71, 71)
+                .add(jlblEnemyHealth)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jlblYourHealth)
+                .add(103, 103, 103))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(11, 11, 11)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(17, 17, 17)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jlblEnemyName)
                     .add(jlblEnemyHealth)
@@ -235,9 +296,10 @@ public class CombatPanel extends javax.swing.JPanel {
                 .add(jlblEnemyImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 214, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(12, 12, 12))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,6 +322,7 @@ public class CombatPanel extends javax.swing.JPanel {
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jbtnAttack;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnItem;
@@ -267,6 +330,12 @@ public class CombatPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEnemyHealth;
     private javax.swing.JLabel jlblEnemyImage;
     private javax.swing.JLabel jlblEnemyName;
+    private javax.swing.JLabel jlblMoves1;
+    private javax.swing.JLabel jlblMoves2;
+    private javax.swing.JLabel jlblMoves3;
+    private javax.swing.JLabel jlblMoves4;
+    private javax.swing.JLabel jlblMoves5;
+    private javax.swing.JLabel jlblMoves6;
     private javax.swing.JLabel jlblYourHealth;
     private javax.swing.JScrollPane jlistMoves;
     // End of variables declaration//GEN-END:variables
@@ -285,6 +354,52 @@ public class CombatPanel extends javax.swing.JPanel {
         jlblYourHealth.setText(String.valueOf(character.getHealth()));
     }
 
+    public void setjlblMoves6(String input){
+        jlblMoves6.setText(input);
+    }
+    
+    public String getjlblMoves6(){
+        return jlblMoves6.getText();
+    }
+    
+    public void setjlblMoves5(String input){
+        jlblMoves5.setText(input);
+    }
+    
+    public String getjlblMoves5(){
+        return jlblMoves5.getText();
+    }
+    public void setjlblMoves4(String input){
+        jlblMoves4.setText(input);
+    }
+    
+    public String getjlblMoves4(){
+        return jlblMoves4.getText();
+    }
+    public void setjlblMoves3(String input){
+        jlblMoves3.setText(input);
+    }
+    
+    public String getjlblMoves3(){
+        return jlblMoves3.getText();
+    }
+    public void setjlblMoves2(String input){
+        jlblMoves2.setText(input);
+    }
+    
+    public String getjlblMoves2(){
+        return jlblMoves2.getText();
+    }
+    public void setjlblMoves1(String input){
+        jlblMoves1.setText(input);
+    }
+    
+    public String getjlblMoves1(){
+        return jlblMoves1.getText();
+    }
+
+    
+    
     /**
      * @return the enemy
      */
