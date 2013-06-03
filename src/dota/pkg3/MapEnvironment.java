@@ -246,20 +246,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     }
 
     private void newCombatVisualizer() {
-        JDialog dialog;
-        dialog = new JDialog();
-
-        dialog.setModal(true);
-        dialog.setTitle("Battle!");
-
-        CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy);
-        dialog.add(cv);
-        dialog.setAlwaysOnTop(true);
-
-        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        dialog.setSize(new Dimension(800, 600));
-        dialog.setVisible(true);
-        dialog.setFocusable(true);
+        CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy, true);
     }
 
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
