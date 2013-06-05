@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  *
  * @author kevin.lawrence
  */
-public class MapEnvironment extends Environment implements PortalEventHandler {
+public class MapEnvironment extends Environment implements PortalEventHandler, ItemEventHandler, EndCombatEventHandler {
 
     private Map forestEntrance;
     private Map campus;
@@ -42,6 +42,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     private ArrayList<Attack> moves;
     private ArrayList<Attack> enemyMoves;
     private String MOVE_SOUND = "sounds/step.wav";
+    private CombatVisualizer combatVisualizer;
 
     @Override
     public void initializeEnvironment() {
@@ -49,16 +50,23 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         enemyMoves.add(new Attack("Bite", 10, 15, 1));
         moves = new ArrayList<Attack>();
         moves.add(new Attack("Flame", 10, 30, .5));
-        enemy = new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png"));
-        character = new Character(100, moves, ResourceTools.loadImageFromResource("Resources/front_idle.png"));
-        enemy = enemy.getBlob();
+        moves.add(new Attack("Kamehameha", 30 , 50 , .8));
+        moves.add(new Attack("poke", 1, 1, 1));
+        moves.add(new Attack("OP!!!", 9001, 9001, 1));
+        setEnemy(new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
+        setCharacter(new Character(100, moves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
+        setEnemy(getEnemy().getBee());
         setBackground(Color.BLACK);
         campus = MapFactory.getCampus();
         campus.setPortalHandler(this);
+        
+
         forestEntrance = MapFactory.getForestEntrance();
         forestEntrance.setPortalHandler(this);
+        
         forest = MapFactory.getForest();
         forest.setPortalHandler(this);
+        
         townWithForest = MapFactory.getTownWithForest();
         townWithForest.setPortalHandler(this);
         mapToTown = MapFactory.getMapToTown();
@@ -67,8 +75,11 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         houseMap.setPortalHandler(this);
         storeMap = MapFactory.getStoreMap();
         storeMap.setPortalHandler(this);
+        
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
+        level_one_map.setItemHandler(this);
+        
         currentMap = level_one_map;
 
         MapFactory.addPortal(forestEntrance, new Point(16, -1), townWithForest, new Point(8, 40));
@@ -107,6 +118,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
     }
 
+    
     @Override
     public void timerTaskHandler() {
         if (this.moved != null) {
@@ -185,9 +197,9 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/rear_step_1.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/rear_step_1.png"));
                     } else {
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/rear_step_2.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/rear_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -200,9 +212,9 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/left_step_1.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/left_step_1.png"));
                     } else {
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/left_step_2.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/left_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -215,9 +227,9 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/front_step_1.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/front_step_1.png"));
                     } else {
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/front_step_2.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/front_step_2.png"));
                         this.stepcount += 1;
                     }
 
@@ -230,9 +242,9 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
 
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/right_step_1.png"));
                     } else {
-                        character.setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
+                        getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/right_step_2.png"));
                         this.stepcount += 1;
 
                     }
@@ -246,7 +258,11 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     }
 
     private void newCombatVisualizer() {
+<<<<<<< HEAD
         CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy, true);
+=======
+        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true);
+>>>>>>> origin/pretty_combat
     }
 
     private void validateCellAtSystemCoordinate(Point systemCoordinate) {
@@ -261,16 +277,15 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
     @Override
     public void keyReleasedHandler(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            character.setImage(ResourceTools.loadImageFromResource("Resources/rear_idle.png"));
+            getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/rear_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            character.setImage(ResourceTools.loadImageFromResource("Resources/left_idle.png"));
+            getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/left_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            character.setImage(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+            getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            character.setImage(ResourceTools.loadImageFromResource("Resources/right_idle.png"));
+            getCharacter().setImage(ResourceTools.loadImageFromResource("Resources/right_idle.png"));
         }
 
-//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -286,7 +301,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         if (currentMap != null) {
 //            graphics.drawImage(currentMap.getBackground(), 10, 10, null);
             currentMap.drawMap(graphics);
-            this.character.drawCharacter(graphics, charXY);
+            this.getCharacter().drawCharacter(graphics, charXY);
         }
     }
 
@@ -299,4 +314,54 @@ public class MapEnvironment extends Environment implements PortalEventHandler {
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
     }
     //</editor-fold>
+
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="ItemEventHandler Interface">
+    @Override
+    public void itemEvent(MapItem item) {
+//        if (item.getEnemy().getName().equals("Blobby")){
+//            System.out.println("WOOOOT - found Blobby");
+        this.enemy = item.getEnemy();
+        newCombatVisualizer();
+//            CombatVisualizer cv = new CombatVisualizer(this.getCharacter(), item.getEnemy(), true);
+//        }
+    }
+    //</editor-fold>
+    
+    /**
+     * @return the character
+     */
+    public Character getCharacter() {
+        return character;
+    }
+
+    /**
+     * @param character the character to set
+     */
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+
+    /**
+     * @return the enemy
+     */
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    /**
+     * @param enemy the enemy to set
+     */
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
+    }
+
+    @Override
+    public void combatEvent(CombatResults combatResults) {
+//        this.combatVisualizer.close();
+        System.out.println("HI");
+    }
+
+
 }

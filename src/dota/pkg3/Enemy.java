@@ -41,22 +41,31 @@ public class Enemy {
         this.attacks.clear();
     }
     
-    public Enemy getBlob(){
-        this.clearAttacks();
-        this.attacks.add(new Attack("Bounce", 5, 10, 1));
-        this.attacks.add(new Attack("Tackle", 10, 20,.7));
-        this.attacks.add(new Attack("Super Beam", 80, 100, .3));
-        this.setName("Blob");
-        this.setHealth(50);
-        this.setAttacks(attacks);
-//        blob.attacks.add(new Attack("Bounce", 5, 10, 1));
-//        blob.attacks.add(new Attack("Tackle", 10, 20,.7));
-//        blob.attacks.add(new Attack("Super Beam", 80, 100, .3));
-        this.setEnemyImage(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
-        
-        
-        return new Enemy(this.getName(), this.getHealth(),this.getAttacks(),this.getEnemyImage());
+//    public Enemy getBlob(){
+//        this.attacks.add(new Attack("Bounce", 5, 10, 1));
+//        this.attacks.add(new Attack("Tackle", 10, 20,.7));
+//        this.attacks.add(new Attack("Super Beam", 80, 100, .3));
+//        this.setName("Blob");
+//        this.setHealth(50);
+//        this.setAttacks(attacks);
+////        blob.attacks.add(new Attack("Bounce", 5, 10, 1));
+////        blob.attacks.add(new Attack("Tackle", 10, 20,.7));
+////        blob.attacks.add(new Attack("Super Beam", 80, 100, .3));
+//        this.setEnemyImage(ResourceTools.loadImageFromResource("Resources/front_idle.png"));
+//        
+//        
+//        return new Enemy(this.getName(), this.getHealth(),this.getAttacks(),this.getEnemyImage());
+//    }
+    
+    public static Enemy getBee(){
+        ArrayList<Attack> beeAttacks = new ArrayList<Attack>();
+        beeAttacks.add(new Attack("Sting", 10, 15, 1));
+        beeAttacks.add(new Attack("Tackle", 5, 10, 1));
+        beeAttacks.add(new Attack("Super Beam", 80, 100, .3));
+
+        return new Enemy("Bee", 30, beeAttacks , ResourceTools.loadImageFromResource("Resources/Bee.png"));
     }
+    
 
     /**
      * @return the name

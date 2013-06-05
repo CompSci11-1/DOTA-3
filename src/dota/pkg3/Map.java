@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import dota.pkg3.ItemEventHandler;
 
 /**
  *
@@ -58,7 +59,6 @@ public class Map {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Methods">
-    
     public void drawMap(Graphics graphics){
         if (this.background != null){
             graphics.drawImage(background, this.position.x, this.position.y, null);
@@ -89,8 +89,8 @@ public class Map {
                 graphics.drawString("P", systemCoordinate.x, systemCoordinate.y);
             }
             
-            for (Point item : items) {
-                Point systemCoordinate = grid.getCellPosition(item);
+            for (MapItem item : items) {
+                Point systemCoordinate = grid.getCellPosition(item.getLocation());
                 systemCoordinate.x += (grid.getCellWidth() / 4);
                 systemCoordinate.y += (grid.getCellHeight() * 3 / 4) ;
                 
@@ -195,26 +195,36 @@ public class Map {
 //                getPortalHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
 //            }
 //        }
-        
-        if (hitTest(cellLocation, getItems())) {
-            System.out.println("Hey... found something!");
             
+        MapItem mapItem = getMapItem(cellLocation);
+        if (mapItem != null) {
+            
+//            System.out.println(getMapItem(cellLocation).getEnemy().getName());
             //put an event handler here!
             if (getItemHandler() != null) {
-                getItemHandler().MovementEvent(Map.MovementEventType.OBSTACLE);
+                getItemHandler().itemEvent(mapItem);
             }
         }
         
         return true;
     }
     
-    public static boolean hitTest(Point cellLocation, ArrayList<Point> locations) {
-        for (Point location : locations) {
-            if (location.equals(cellLocation)) {
-                return true;
+//    public static boolean hitTest(Point cellLocation, ArrayList<Point> locations) {
+//        for (Point location : locations) {
+//            if (location.equals(cellLocation)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    
+    private MapItem getMapItem(Point location){
+        for (MapItem item : this.getItems()){
+            if (item.getLocation().equals(location)){
+                return item;
             }
         }
-        return false;
+        return null;
     }
     
     private MapPortal getMapPortal(Point location){
@@ -239,10 +249,10 @@ public class Map {
     //<editor-fold defaultstate="collapsed" desc="Properties">
     private ObstacleEventHandler obstacleHandler;
     private PortalEventHandler portalHandler;
-    private Map.MovementEventHander itemHandler;
+    private ItemEventHandler itemHandler;
     private ArrayList<MapObstacle> obstacles = new ArrayList<MapObstacle>();
     private ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-    private ArrayList<Point> items = new ArrayList<Point>();
+    private ArrayList<MapItem> items = new ArrayList<MapItem>();
     private Image background;
     private Grid grid;
     private Point position = new Point(0, 0);
@@ -277,6 +287,20 @@ public class Map {
     }
     
     /**
+     * @return the itemHandler
+     */
+    public ItemEventHandler getItemHandler() {
+        return itemHandler;
+    }
+
+    /**
+     * @param itemHandler the itemHandler to set
+     */
+    public void setItemHandler(ItemEventHandler itemHandler) {
+        this.itemHandler = itemHandler;
+    }
+
+    /**
      * @return the portalHandler
      */
     public PortalEventHandler getPortalHandler() {
@@ -290,19 +314,19 @@ public class Map {
         this.portalHandler = portalHandler;
     }
     
-    /**
-     * @return the itemHandler
-     */
-    public Map.MovementEventHander getItemHandler() {
-        return itemHandler;
-    }
-    
-    /**
-     * @param itemHandler the itemHandler to set
-     */
-    public void setItemHandler(Map.MovementEventHander itemHandler) {
-        this.itemHandler = itemHandler;
-    }
+//    /**
+//     * @return the itemHandler
+//     */
+//    public ItemEventHander getItemHandler() {
+//        return itemHandler;
+//    }
+//    
+//    /**
+//     * @param itemHandler the itemHandler to set
+//     */
+//    public void setItemHandler(ItemEventHander itemHandler) {
+//        this.itemHandler = itemHandler;
+//    }
     
     /**
      * @return the Point locations of the map obstacles
@@ -361,14 +385,14 @@ public class Map {
     /**
      * @return the items
      */
-    public ArrayList<Point> getItems() {
+    public ArrayList<MapItem> getItems() {
         return items;
     }
     
     /**
      * @param items the items to set
      */
-    public void setItems(ArrayList<Point> items) {
+    public void setItems(ArrayList<MapItem> items) {
         this.items = items;
     }
     

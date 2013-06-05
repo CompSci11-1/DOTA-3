@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MapFactory {
 
     public static Map getMap(Image background, Dimension gridCellSize, Dimension gridSize,
-            ArrayList<MapObstacle> obstacles, ArrayList<MapPortal> portals, ArrayList<Point> items) {
+            ArrayList<MapObstacle> obstacles, ArrayList<MapPortal> portals, ArrayList<MapItem> items) {
 
         Map map = new Map(background, gridCellSize, gridSize);
 
@@ -32,7 +32,8 @@ public class MapFactory {
     public static void addPortal(Map startMap, Point startLocation, Map destinationMap, Point destinationLocation) {
         startMap.getPortals().add(new MapPortal(startLocation, destinationMap, destinationLocation));
     }
-
+    
+    
     public static Map getLevelOneMainMap() {
         Image background = ResourceTools.loadImageFromResource("Resources/level_one_map.png");
         Dimension gridCellSize = new Dimension(16, 16);
@@ -343,13 +344,15 @@ obstacles.add(new MapObstacle(new Point(42, 11), ObstacleType.WALL));
 obstacles.add(new MapObstacle(new Point(43, 11), ObstacleType.WALL));
 
         //add other obstacles here...
-
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
-
-        ArrayList<Point> items = new ArrayList<Point>();
-        items.add(new Point(10, 10));
-        items.add(new Point(12, 10));
-        items.add(new Point(0, 9));
+        
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
+        ArrayList<Attack> attack = new ArrayList<Attack>();
+        attack.add(new Attack("b", 1 ,1 ,1));
+        Enemy enemy = new Enemy("a", 1, attack,ResourceTools.loadImageFromResource("Resources/Generic_Store.png"));
+        enemy = enemy.getBee();
+        items.add(new MapItem(new Point (10,10), enemy));
+        
         //add other items here
 
         Map levelOneMap = getMap(background, gridCellSize, gridSize, obstacles, portals, items);
@@ -452,10 +455,10 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
-        items.add(new Point(12, 2));
-        items.add(new Point(11, 2));
-        items.add(new Point(10, 2));
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
+//        items.add(new Point(12, 2));
+//        items.add(new Point(11, 2));
+//        items.add(new Point(10, 2));
         //add other items here
 
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
@@ -533,7 +536,7 @@ obstacles.add(new MapObstacle(new Point(7, 5), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 
@@ -859,7 +862,7 @@ obstacles.add(new MapObstacle(new Point(34, 13), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 
@@ -1191,7 +1194,7 @@ obstacles.add(new MapObstacle(new Point(4, 30), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 
@@ -1636,7 +1639,7 @@ obstacles.add(new MapObstacle(new Point(4, 30), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 
@@ -1886,7 +1889,7 @@ obstacles.add(new MapObstacle(new Point(4, 30), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 
@@ -2149,7 +2152,7 @@ obstacles.add(new MapObstacle(new Point(12, 15), ObstacleType.WALL));
         //add other obstacles here...
 
 
-        ArrayList<Point> items = new ArrayList<Point>();
+        ArrayList<MapItem> items = new ArrayList<MapItem>();
 
         //add other items here
 

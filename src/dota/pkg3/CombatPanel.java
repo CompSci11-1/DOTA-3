@@ -4,6 +4,8 @@
  */
 package dota.pkg3;
 
+import image.ResourceTools;
+import java.awt.Image;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
@@ -22,10 +24,16 @@ public class CombatPanel extends javax.swing.JPanel {
         initData();
     }
     
+    
+    
 //    private ArrayList<Attack> moves;
     private Enemy enemy;
 //    private ArrayList<Attack> enemyMoves;
     private Character character;
+    private Boolean enemyVictory = false;
+    private Boolean friendVictory = false;
+    private EndCombatEventHandler CombatHandler;
+    private CombatResults combatResults;
     
     
     private void initData(){
@@ -34,6 +42,10 @@ public class CombatPanel extends javax.swing.JPanel {
         
 //        this.character.moves.add(new Attack("Flame", 10, 30, .5));
         hideAttacks();
+        setBackground(ResourceTools.loadImageFromResource("Resources/tlotest2wi5.jpg"));
+        setAttackButton(ResourceTools.loadImageFromResource("Resources/Attack.png"));
+        this.jbtnReturn.setVisible(false);
+        this.combatResults = new CombatResults(true);
 //        this.setEnemy(new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
 //        enemyMoves = new ArrayList<Attack>();
 //        enemyMoves.add(new Attack("Bite", 10, 15, 1));
@@ -47,13 +59,13 @@ public class CombatPanel extends javax.swing.JPanel {
     
     
     private void hideAttacks(){
-       this.jPanel1.setVisible(true);
-       this.jPanel2.setVisible(false); 
+//       this.jPanel1.setVisible(true);
+//       this.jPanel2.setVisible(false); 
     }
     
     private void displayAttacks(){  
-        this.jPanel1.setVisible(false);
-        this.jPanel2.setVisible(true);
+//        this.jPanel1.setVisible(false);
+//        this.jPanel2.setVisible(true);
         if (this.character.getAttacks() != null){
             DefaultListModel listModel = new DefaultListModel();
             
@@ -63,6 +75,27 @@ public class CombatPanel extends javax.swing.JPanel {
             this.jList1.setModel(listModel);
         }
     }
+    
+    private void victory(){
+        setjlblMoves1("You have won!");
+        setjlblMoves2("");
+        setjlblMoves3("");
+        setjlblMoves4("");
+        setjlblMoves5("");
+        setjlblMoves6("");
+        this.combatResults.setVictory(true);
+        this.jbtnReturn.setVisible(true);
+    }
+    
+    private void defeat(){
+        setjlblMoves1("You have lost!");
+        setjlblMoves2("");
+        setjlblMoves3("");
+        setjlblMoves4("");
+        setjlblMoves5("");
+        setjlblMoves6("");
+    }
+    
     
     private void showMoves(Attack friendlyAttack, int friendlyDamage, Attack enemyAttack, int enemyDamage, String enemyName){
         this.setjlblMoves6(this.getjlblMoves4());
@@ -83,6 +116,8 @@ public class CombatPanel extends javax.swing.JPanel {
     }
     
     private void processAttack(){
+        if(!(this.friendVictory)){
+            if (!(this.enemyVictory)){
         if (jList1.getSelectedIndex() != -1){
             Attack friendlyAttack = this.character.getAttacks().get(jList1.getSelectedIndex());
             int friendlyDamage = this.character.getAttacks().get(jList1.getSelectedIndex()).attack(this.character.getAttacks().get(jList1.getSelectedIndex()));
@@ -92,6 +127,12 @@ public class CombatPanel extends javax.swing.JPanel {
             } else {
                 System.out.println("miss!");
             }
+            if (this.enemy.getHealth() <= 0){
+                this.enemy.setHealth(0);
+                jlblEnemyHealth.setText(String.valueOf(this.getEnemy().getHealth()));
+                this.friendVictory = true;
+            }
+            if (!(this.friendVictory)){
             int enemyAttackNumber = this.getEnemy().randomAttack();
             System.out.println("enemy attack:" + enemyAttackNumber);
             Attack enemyAttack = this.getEnemy().getAttacks().get(enemyAttackNumber);
@@ -103,10 +144,21 @@ public class CombatPanel extends javax.swing.JPanel {
                 System.out.println("enemy miss!");
             }
             showMoves(friendlyAttack, friendlyDamage, enemyAttack, enemyDamage, this.getEnemy().getName());
+            if (this.character.getHealth() <= 0){
+                this.character.setHealth(0);
+                jlblYourHealth.setText(String.valueOf(this.getCharacter().getHealth()));
+                defeat();
+                this.enemyVictory = true;
+            }
+            } else {
+                victory();
+            }
             
 //            System.out.printf("Selected attack = #%d %s\n",jList1.getSelectedIndex(), jList1.getSelectedValue().toString());
 //            System.out.printf("Look up attack as %s\n", this.moves.get(jList1.getSelectedIndex()).getDisplay());
         }  
+            }
+        }
     }
     
     
@@ -125,65 +177,30 @@ public class CombatPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jlblEnemyName = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jbtnMove = new javax.swing.JButton();
-        jbtnItem = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jlblEnemyHealth = new javax.swing.JLabel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
         jbtnAttack = new javax.swing.JButton();
-        jbtnCancel = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jlistMoves = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jlblEnemyImage = new javax.swing.JLabel();
-        jlblEnemyHealth = new javax.swing.JLabel();
-        jlblYourHealth = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jlblMoves6 = new javax.swing.JLabel();
         jlblMoves5 = new javax.swing.JLabel();
         jlblMoves4 = new javax.swing.JLabel();
         jlblMoves3 = new javax.swing.JLabel();
         jlblMoves2 = new javax.swing.JLabel();
         jlblMoves1 = new javax.swing.JLabel();
+        jlblEnemyImage = new javax.swing.JLabel();
+        jlblYourHealth = new javax.swing.JLabel();
+        jbtnReturn = new javax.swing.JButton();
+        jlblBackground = new javax.swing.JLabel();
 
         jlblEnemyName.setText("jLabel1");
-
-        jbtnMove.setText("Moves");
-        jbtnMove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnMoveActionPerformed(evt);
-            }
-        });
-
-        jbtnItem.setText("Item");
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
-
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jbtnItem)
-            .add(jButton3)
-            .add(jButton4)
-            .add(jbtnMove)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jbtnMove)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
-                .add(jbtnItem)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton3)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton4)
-                .addContainerGap())
-        );
+        jlblEnemyName.setBounds(90, 20, 45, 16);
+        jLayeredPane1.add(jlblEnemyName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblEnemyHealth.setBounds(160, 20, 60, 20);
+        jLayeredPane1.add(jlblEnemyHealth, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jbtnAttack.setText("Attack");
         jbtnAttack.addActionListener(new java.awt.event.ActionListener() {
@@ -191,13 +208,8 @@ public class CombatPanel extends javax.swing.JPanel {
                 jbtnAttackActionPerformed(evt);
             }
         });
-
-        jbtnCancel.setText("Cancel");
-        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnCancelActionPerformed(evt);
-            }
-        });
+        jbtnAttack.setBounds(80, 360, 85, 29);
+        jLayeredPane2.add(jbtnAttack, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jlistMoves.setViewportView(jList1);
 
@@ -205,128 +217,80 @@ public class CombatPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jbtnAttack)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jbtnCancel)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(jlistMoves, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jlistMoves, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jlistMoves, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jbtnAttack)
-                    .add(jbtnCancel))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(jlistMoves, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
+
+        jPanel2.setBounds(30, 270, 190, 90);
+        jLayeredPane2.add(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves6.setBounds(310, 260, 220, 20);
+        jLayeredPane2.add(jlblMoves6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves5.setBounds(310, 280, 210, 20);
+        jLayeredPane2.add(jlblMoves5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves4.setBounds(310, 300, 210, 20);
+        jLayeredPane2.add(jlblMoves4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves3.setBounds(310, 320, 210, 20);
+        jLayeredPane2.add(jlblMoves3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves2.setBounds(310, 340, 210, 20);
+        jLayeredPane2.add(jlblMoves2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblMoves1.setBounds(310, 360, 210, 20);
+        jLayeredPane2.add(jlblMoves1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlblEnemyImage.setBounds(170, 30, 250, 190);
+        jLayeredPane2.add(jlblEnemyImage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jlblYourHealth.setText("jLabel1");
+        jlblYourHealth.setBounds(350, 20, 45, 16);
+        jLayeredPane2.add(jlblYourHealth, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jlblMoves6)
-                    .add(jlblMoves5)
-                    .add(jlblMoves4)
-                    .add(jlblMoves3)
-                    .add(jlblMoves2)
-                    .add(jlblMoves1))
-                .addContainerGap(162, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jlblMoves6)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jlblMoves5)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jlblMoves4)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jlblMoves3)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jlblMoves2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jlblMoves1)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jbtnReturn.setText("Return");
+        jbtnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnReturnActionPerformed(evt);
+            }
+        });
+        jbtnReturn.setBounds(220, 360, 85, 29);
+        jLayeredPane2.add(jbtnReturn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jlblBackground.setText("jLabel1");
+        jlblBackground.setBounds(0, -20, 640, 450);
+        jLayeredPane2.add(jlblBackground, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBounds(0, 0, 640, 450);
+        jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(109, 109, 109)
-                        .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .add(201, 201, 201)
-                        .add(jlblEnemyImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 232, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .add(35, 35, 35)
-                .add(jlblEnemyName)
-                .add(71, 71, 71)
-                .add(jlblEnemyHealth)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jlblYourHealth)
-                .add(103, 103, 103))
+            .add(jLayeredPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(17, 17, 17)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblEnemyName)
-                    .add(jlblEnemyHealth)
-                    .add(jlblYourHealth))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 15, Short.MAX_VALUE)
-                .add(jlblEnemyImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 214, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+            .add(jLayeredPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbtnMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMoveActionPerformed
-        displayAttacks();
-    }//GEN-LAST:event_jbtnMoveActionPerformed
 
     private void jbtnAttackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAttackActionPerformed
         processAttack();
         hideAttacks();
     }//GEN-LAST:event_jbtnAttackActionPerformed
 
-    private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-        hideAttacks();
-    }//GEN-LAST:event_jbtnCancelActionPerformed
+    private void jbtnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReturnActionPerformed
+        CombatResults combatResults = new CombatResults(true);
+        getCombatHandler().combatEvent(combatResults);
+    }//GEN-LAST:event_jbtnReturnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JList jList1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jbtnAttack;
-    private javax.swing.JButton jbtnCancel;
-    private javax.swing.JButton jbtnItem;
-    private javax.swing.JButton jbtnMove;
+    private javax.swing.JButton jbtnReturn;
+    private javax.swing.JLabel jlblBackground;
     private javax.swing.JLabel jlblEnemyHealth;
     private javax.swing.JLabel jlblEnemyImage;
     private javax.swing.JLabel jlblEnemyName;
@@ -345,13 +309,20 @@ public class CombatPanel extends javax.swing.JPanel {
     public Character getCharacter() {
         return character;
     }
+        
+    public void setAttackButton(Image image){
+        jbtnAttack.setIcon(new ImageIcon(image));
+    }
+    
 
-    /**
-     * @param character the character to set
-     */
+    public void setBackground(Image image){
+        jlblBackground.setIcon(new ImageIcon(image));
+    }
+    
     public void setCharacter(Character character) {
         this.character = character;
         jlblYourHealth.setText(String.valueOf(character.getHealth()));
+        displayAttacks();
     }
 
     public void setjlblMoves6(String input){
@@ -414,6 +385,20 @@ public class CombatPanel extends javax.swing.JPanel {
         this.enemy = enemy;
         jlblEnemyHealth.setText(String.valueOf(this.getEnemy().getHealth()));
         jlblEnemyImage.setIcon(new ImageIcon(this.enemy.getEnemyImage()));
+    }
+
+    /**
+     * @return the CombatHandler
+     */
+    public EndCombatEventHandler getCombatHandler() {
+        return CombatHandler;
+    }
+
+    /**
+     * @param CombatHandler the CombatHandler to set
+     */
+    public void setCombatHandler(EndCombatEventHandler CombatHandler) {
+        this.CombatHandler = CombatHandler;
     }
 
     
