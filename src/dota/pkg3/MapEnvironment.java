@@ -259,8 +259,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     private void newCombatVisualizer() {
 
-        CombatVisualizer cv = new CombatVisualizer(this.character, this.enemy, true);
-
         this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true);
 
     }

@@ -49,7 +49,7 @@ public class CombatVisualizer extends CombatPanel {
 
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        dialog.setSize(new Dimension(800, 600));
+        dialog.setSize(new Dimension(540, 430));
         dialog.setVisible(true);
         dialog.setFocusable(true);
         
