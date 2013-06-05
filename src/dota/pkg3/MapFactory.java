@@ -347,10 +347,10 @@ obstacles.add(new MapObstacle(new Point(43, 11), ObstacleType.WALL));
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
         
         ArrayList<MapItem> items = new ArrayList<MapItem>();
-        ArrayList<Attack> attack = new ArrayList<Attack>();
-        attack.add(new Attack("b", 1 ,1 ,1));
-        Enemy enemy = new Enemy("a", 1, attack,ResourceTools.loadImageFromResource("Resources/Generic_Store.png"));
-        enemy = enemy.getBee();
+//        ArrayList<Attack> attack = new ArrayList<Attack>();
+//        attack.add(new Attack("b", 1 ,1 ,1));
+//        Enemy enemy = new Enemy("a", 1, attack,ResourceTools.loadImageFromResource("Resources/Generic_Store.png"));
+        Enemy enemy = Enemy.getBee();
         items.add(new MapItem(new Point (10,10), enemy));
         
         //add other items here
@@ -1640,7 +1640,14 @@ obstacles.add(new MapObstacle(new Point(4, 30), ObstacleType.WALL));
 
 
         ArrayList<MapItem> items = new ArrayList<MapItem>();
-
+            Enemy enemy = Enemy.getBee();
+        items.add(new MapItem(new Point (7,28), enemy));
+        items.add(new MapItem(new Point (19,18), enemy));
+        items.add(new MapItem(new Point (7,17), enemy));
+        items.add(new MapItem(new Point (34,9), enemy));
+        items.add(new MapItem(new Point (42,25), enemy));
+        items.add(new MapItem(new Point (38,35), enemy));
+        
         //add other items here
 
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();

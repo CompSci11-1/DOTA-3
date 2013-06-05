@@ -59,22 +59,27 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         setBackground(Color.BLACK);
         campus = MapFactory.getCampus();
         campus.setPortalHandler(this);
+        campus.setItemHandler(this);
         
 
         forestEntrance = MapFactory.getForestEntrance();
         forestEntrance.setPortalHandler(this);
-        
+        forestEntrance.setItemHandler(this);
         forest = MapFactory.getForest();
         forest.setPortalHandler(this);
-        
+        forest.setItemHandler(this);
         townWithForest = MapFactory.getTownWithForest();
         townWithForest.setPortalHandler(this);
+        townWithForest.setItemHandler(this);
         mapToTown = MapFactory.getMapToTown();
         mapToTown.setPortalHandler(this);
+        mapToTown.setItemHandler(this);
         houseMap = MapFactory.getHouseMap();
         houseMap.setPortalHandler(this);
+        houseMap.setItemHandler(this);
         storeMap = MapFactory.getStoreMap();
         storeMap.setPortalHandler(this);
+        storeMap.setItemHandler(this);
         
         level_one_map = MapFactory.getLevelOneMainMap();
         level_one_map.setPortalHandler(this);
