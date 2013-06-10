@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  *
  * @author kevin.lawrence
  */
-public class MapEnvironment extends Environment implements PortalEventHandler, ItemEventHandler, EndCombatEventHandler {
+public class MapEnvironment extends Environment implements PortalEventHandler, ItemEventHandler, CombatResultHandler {
 
     private Map forestEntrance;
     private Map campus;
@@ -33,7 +33,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private Map level_one_map;
     private Map currentMap;
     private Point charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
-    private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
@@ -43,6 +42,13 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private ArrayList<Attack> enemyMoves;
     private String MOVE_SOUND = "sounds/step.wav";
     private CombatVisualizer combatVisualizer;
+    private JDialog dialog;
+    private Map.Direction direction;
+    
+    public static enum Direction {
+        
+        UP, DOWN, LEFT, RIGHT
+    }
 
     @Override
     public void initializeEnvironment() {
@@ -194,6 +200,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         }
         if (!(this.moved)) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
+                this.direction = Map.Direction.UP;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
@@ -208,6 +215,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                this.direction = Map.Direction.LEFT;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
 
                     if (this.stepcount == 1) {
@@ -223,6 +231,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                this.direction = Map.Direction.DOWN;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
 
                     if (this.stepcount == 1) {
@@ -238,6 +247,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                this.direction = Map.Direction.RIGHT;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
 
                     if (this.stepcount == 1) {
@@ -259,7 +269,23 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     private void newCombatVisualizer() {
 
-        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true);
+//        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true, this);
+        
+        this.dialog = new JDialog();
+
+
+        this.dialog.setModal(true);
+        this.dialog.setTitle("Battle!");
+
+        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), this);
+        this.dialog.add(this.combatVisualizer);
+        this.dialog.setAlwaysOnTop(true);
+
+        this.dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.dialog.setSize(new Dimension(540, 430));
+        this.dialog.setVisible(true);
+        this.dialog.setFocusable(true);
 
     }
 
@@ -354,11 +380,22 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
+//
+//    @Override
+//    public void combatEvent(CombatResults combatResults) {
+////        this.combatVisualizer.close();
+//        System.out.println("HI");
+//    }
 
     @Override
-    public void combatEvent(CombatResults combatResults) {
-//        this.combatVisualizer.close();
-        System.out.println("HI");
+    public void combatResultEvent(CombatResults result) {
+        System.out.println("yo again");
+//        System.out.println(this.currentMap.validateCharacterMove(charXY, Map.Direction.LEFT));
+//        System.out.println(this.currentMap.validateLocation(charXY));
+        
+        System.out.println("DOUBLE YO");
+        this.dialog.dispose();
+        this.currentMap.deleteMapItem(currentMap.getCellLocation(charXY), this.direction);
     }
 
 

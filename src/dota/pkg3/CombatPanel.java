@@ -24,6 +24,12 @@ public class CombatPanel extends javax.swing.JPanel {
         initData();
     }
     
+    public CombatPanel(CombatResultHandler cr) {
+        this.combatResultHandler = cr;
+        initComponents();
+        initData();
+    }
+    
     
     
 //    private ArrayList<Attack> moves;
@@ -32,8 +38,8 @@ public class CombatPanel extends javax.swing.JPanel {
     private Character character;
     private Boolean enemyVictory = false;
     private Boolean friendVictory = false;
-    private EndCombatEventHandler CombatHandler;
     private CombatResults combatResults;
+    private CombatResultHandler combatResultHandler;
     
     
     private void initData(){
@@ -44,6 +50,8 @@ public class CombatPanel extends javax.swing.JPanel {
         hideAttacks();
         setBackground(ResourceTools.loadImageFromResource("Resources/tlotest2wi5.jpg"));
         setAttackButton(ResourceTools.loadImageFromResource("Resources/Attack.png"));
+        setReturnButton(ResourceTools.loadImageFromResource("Resources/Return.png"));
+        
         this.jbtnReturn.setVisible(false);
         this.combatResults = new CombatResults(true);
 //        this.setEnemy(new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
@@ -279,8 +287,12 @@ public class CombatPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnAttackActionPerformed
 
     private void jbtnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReturnActionPerformed
-        CombatResults combatResults = new CombatResults(true);
-        getCombatHandler().combatEvent(combatResults);
+
+        if (this.combatResultHandler != null){
+            CombatResults cr = new CombatResults(this.combatResults.getVictory());
+            combatResultHandler.combatResultEvent(cr);
+        }
+        
     }//GEN-LAST:event_jbtnReturnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -312,6 +324,9 @@ public class CombatPanel extends javax.swing.JPanel {
         
     public void setAttackButton(Image image){
         jbtnAttack.setIcon(new ImageIcon(image));
+    }
+    public void setReturnButton(Image image){
+        jbtnReturn.setIcon(new ImageIcon(image));
     }
     
 
@@ -388,17 +403,17 @@ public class CombatPanel extends javax.swing.JPanel {
     }
 
     /**
-     * @return the CombatHandler
+     * @return the combatResultHandler
      */
-    public EndCombatEventHandler getCombatHandler() {
-        return CombatHandler;
+    public CombatResultHandler getCombatResultHandler() {
+        return combatResultHandler;
     }
 
     /**
-     * @param CombatHandler the CombatHandler to set
+     * @param combatResultHandler the combatResultHandler to set
      */
-    public void setCombatHandler(EndCombatEventHandler CombatHandler) {
-        this.CombatHandler = CombatHandler;
+    public void setCombatResultHandler(CombatResultHandler combatResultHandler) {
+        this.combatResultHandler = combatResultHandler;
     }
 
     

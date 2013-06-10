@@ -25,7 +25,8 @@ public class MainMenu extends javax.swing.JPanel {
 
  
     private void startMapEnvironment() {
-        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1200, 750), new MapEnvironment());
+//        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1200, 750), new MapEnvironment());
+        ApplicationStarter.run(new String[0], "Dota 3 - Map Environment", new Dimension(1000, 500), new MapEnvironment());
     }
     
     /**
