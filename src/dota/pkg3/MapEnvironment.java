@@ -48,6 +48,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private Attack poke;
     private Attack op;
     private Attack kameha;
+    private Boolean stop = false;
     
     public static enum Direction {
         
@@ -59,10 +60,10 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         enemyMoves = new ArrayList<Attack>();
         enemyMoves.add(new Attack("Bite", 10, 15, 1));
         moves = new ArrayList<Attack>();
-        op = new Attack("OP!!!", 9001, 9001, 1);
-        flame = new Attack("Flame", 10, 30, .5);
-        poke = new Attack("poke", 1, 1, 1);
-        kameha = new Attack("Kamehameha", 30 , 50 , .8);
+        op = new Attack("OP!!!", 100, 100, .05);
+        flame = new Attack("Flame", 10, 30, .6);
+        poke = new Attack("punch", 5, 10, .8);
+        kameha = new Attack("Kamehameha", 30 , 50 , .6);
 //        this.flame.attack(new Attack("Flame", 10, 30, .5));
 //        this.kameha.attack(new Attack("Kamehameha", 30 , 50 , .8));
 //        this.poke.attack(new Attack("poke", 1, 1, 1));
@@ -158,6 +159,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
+        if (this.stop != true) {
         if (e.getKeyCode() == KeyEvent.VK_1) {
             this.currentMap = this.level_one_map;
             this.charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
@@ -280,6 +282,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             }
+        }
         }
     }
 
@@ -405,6 +408,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     @Override
     public void combatResultEvent(CombatResults result) {
+        if (result.getVictory()) {
         if(this.enemy.getName() == Enemy.getBee().getName()){
             this.character.setHealth(this.character.getHealth() + 10);
         } 
@@ -412,9 +416,8 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         else if (this.enemy.getName() == Enemy.getSpider().getName()){
             if(!(this.character.getAttacks().contains(this.kameha))){
             this.character.getAttacks().add(this.kameha);
-                System.out.println("YO");
             }
-            System.out.println("YONO");
+       
             this.character.setHealth(this.character.getHealth() + 20);
             
         }
@@ -422,7 +425,10 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         
         this.dialog.dispose();
         this.currentMap.deleteMapItem(currentMap.getCellLocation(charXY), this.direction);
+    }else {
+            this.dialog.dispose();
+            this.stop = true;
+        }
     }
-
 
 }

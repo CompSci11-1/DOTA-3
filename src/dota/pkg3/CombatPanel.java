@@ -102,6 +102,8 @@ public class CombatPanel extends javax.swing.JPanel {
         setjlblMoves4("");
         setjlblMoves5("");
         setjlblMoves6("");
+        this.combatResults.setVictory(false);
+        this.jbtnReturn.setVisible(true);
     }
     
     
