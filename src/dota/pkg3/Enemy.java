@@ -57,6 +57,15 @@ public class Enemy {
 //        return new Enemy(this.getName(), this.getHealth(),this.getAttacks(),this.getEnemyImage());
 //    }
     
+    
+    public static Enemy getSpider(){
+        ArrayList<Attack> spiderAttacks = new ArrayList<Attack>();
+        spiderAttacks.add(new Attack("String shot", 20, 25, .6));
+        spiderAttacks.add(new Attack("Bite", 15, 20, 1));
+        
+        return new Enemy("Spider", 50, spiderAttacks, ResourceTools.loadImageFromResource("Resources/Spider.png"));
+    }
+    
     public static Enemy getBee(){
         ArrayList<Attack> beeAttacks = new ArrayList<Attack>();
         beeAttacks.add(new Attack("Sting", 10, 15, 1));

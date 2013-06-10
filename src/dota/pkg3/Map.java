@@ -218,14 +218,23 @@ public class Map {
 //        return false;
 //    }
     
-    private MapItem getMapItem(Point location){
+    public MapItem getMapItem(Point location){
         for (MapItem item : this.getItems()){
             if (item.getLocation().equals(location)){
+                System.out.println("number 1");
                 return item;
             }
         }
         return null;
     }
+    
+    public void deleteMapItem(Point location, Direction direction){
+            MapItem mapItem = getMapItem(getMovementCellLocation(location, direction));
+        if(mapItem != null){
+            this.items.remove(mapItem);
+        }
+    }
+    
     
     private MapPortal getMapPortal(Point location){
         for (MapPortal portal : getPortals()){

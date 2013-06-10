@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  *
  * @author kevin.lawrence
  */
-public class MapEnvironment extends Environment implements PortalEventHandler, ItemEventHandler, EndCombatEventHandler {
+public class MapEnvironment extends Environment implements PortalEventHandler, ItemEventHandler, CombatResultHandler {
 
     private Map forestEntrance;
     private Map campus;
@@ -33,7 +33,6 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private Map level_one_map;
     private Map currentMap;
     private Point charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
-    private int charY = 0;
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
@@ -43,16 +42,34 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private ArrayList<Attack> enemyMoves;
     private String MOVE_SOUND = "sounds/step.wav";
     private CombatVisualizer combatVisualizer;
+    private JDialog dialog;
+    private Map.Direction direction;
+    private Attack flame;
+    private Attack poke;
+    private Attack op;
+    private Attack kameha;
+    
+    public static enum Direction {
+        
+        UP, DOWN, LEFT, RIGHT
+    }
 
     @Override
     public void initializeEnvironment() {
         enemyMoves = new ArrayList<Attack>();
         enemyMoves.add(new Attack("Bite", 10, 15, 1));
         moves = new ArrayList<Attack>();
-        moves.add(new Attack("Flame", 10, 30, .5));
-        moves.add(new Attack("Kamehameha", 30 , 50 , .8));
-        moves.add(new Attack("poke", 1, 1, 1));
-        moves.add(new Attack("OP!!!", 9001, 9001, 1));
+        op = new Attack("OP!!!", 9001, 9001, 1);
+        flame = new Attack("Flame", 10, 30, .5);
+        poke = new Attack("poke", 1, 1, 1);
+        kameha = new Attack("Kamehameha", 30 , 50 , .8);
+//        this.flame.attack(new Attack("Flame", 10, 30, .5));
+//        this.kameha.attack(new Attack("Kamehameha", 30 , 50 , .8));
+//        this.poke.attack(new Attack("poke", 1, 1, 1));
+//        this.op.attack(new Attack("OP!!!", 9001, 9001, 1));
+        moves.add(flame);
+        moves.add(poke);
+        moves.add(op);
         setEnemy(new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
         setCharacter(new Character(100, moves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
         setEnemy(getEnemy().getBee());
@@ -199,6 +216,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         }
         if (!(this.moved)) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
+                this.direction = Map.Direction.UP;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.UP)) {
                     if (this.stepcount == 1) {
                         this.stepcount = 0;
@@ -213,6 +231,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                this.direction = Map.Direction.LEFT;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.LEFT)) {
 
                     if (this.stepcount == 1) {
@@ -228,6 +247,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                this.direction = Map.Direction.DOWN;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.DOWN)) {
 
                     if (this.stepcount == 1) {
@@ -243,6 +263,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
                     AudioPlayer.play(ResourceTools.getResourceAsStream(MOVE_SOUND));
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                this.direction = Map.Direction.RIGHT;
                 if (this.currentMap.validateCharacterMove(this.currentMap.getCellLocation(charXY), Map.Direction.RIGHT)) {
 
                     if (this.stepcount == 1) {
@@ -264,7 +285,23 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     private void newCombatVisualizer() {
 
-        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true);
+//        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), true, this);
+        
+        this.dialog = new JDialog();
+
+
+        this.dialog.setModal(true);
+        this.dialog.setTitle("Battle!");
+
+        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), this.enemy, this);
+        this.dialog.add(this.combatVisualizer);
+        this.dialog.setAlwaysOnTop(true);
+
+        this.dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.dialog.setSize(new Dimension(540, 430));
+        this.dialog.setVisible(true);
+        this.dialog.setFocusable(true);
 
     }
 
@@ -359,11 +396,32 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
+//
+//    @Override
+//    public void combatEvent(CombatResults combatResults) {
+////        this.combatVisualizer.close();
+//        System.out.println("HI");
+//    }
 
     @Override
-    public void combatEvent(CombatResults combatResults) {
-//        this.combatVisualizer.close();
-        System.out.println("HI");
+    public void combatResultEvent(CombatResults result) {
+        if(this.enemy.getName() == Enemy.getBee().getName()){
+            this.character.setHealth(this.character.getHealth() + 10);
+        } 
+        
+        else if (this.enemy.getName() == Enemy.getSpider().getName()){
+            if(!(this.character.getAttacks().contains(this.kameha))){
+            this.character.getAttacks().add(this.kameha);
+                System.out.println("YO");
+            }
+            System.out.println("YONO");
+            this.character.setHealth(this.character.getHealth() + 20);
+            
+        }
+        
+        
+        this.dialog.dispose();
+        this.currentMap.deleteMapItem(currentMap.getCellLocation(charXY), this.direction);
     }
 
 
