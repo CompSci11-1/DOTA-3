@@ -347,11 +347,9 @@ obstacles.add(new MapObstacle(new Point(43, 11), ObstacleType.WALL));
         ArrayList<MapPortal> portals = new ArrayList<MapPortal>();
         
         ArrayList<MapItem> items = new ArrayList<MapItem>();
-        ArrayList<Attack> attack = new ArrayList<Attack>();
-        attack.add(new Attack("b", 1 ,1 ,1));
-        Enemy enemy = new Enemy("a", 1, attack,ResourceTools.loadImageFromResource("Resources/Generic_Store.png"));
-        enemy = enemy.getBee();
-        items.add(new MapItem(new Point (10,10), enemy));
+        items.add(new MapItem(new Point (10,10), Enemy.getBee()));
+        items.add(new MapItem(new Point (11,11), Enemy.getSpider()));
+        items.add(new MapItem(new Point (12,12), Enemy.getSpider()));
         
         //add other items here
 

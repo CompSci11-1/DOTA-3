@@ -44,6 +44,10 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private CombatVisualizer combatVisualizer;
     private JDialog dialog;
     private Map.Direction direction;
+    private Attack flame;
+    private Attack poke;
+    private Attack op;
+    private Attack kameha;
     
     public static enum Direction {
         
@@ -55,10 +59,17 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         enemyMoves = new ArrayList<Attack>();
         enemyMoves.add(new Attack("Bite", 10, 15, 1));
         moves = new ArrayList<Attack>();
-        moves.add(new Attack("Flame", 10, 30, .5));
-        moves.add(new Attack("Kamehameha", 30 , 50 , .8));
-        moves.add(new Attack("poke", 1, 1, 1));
-        moves.add(new Attack("OP!!!", 9001, 9001, 1));
+        op = new Attack("OP!!!", 9001, 9001, 1);
+        flame = new Attack("Flame", 10, 30, .5);
+        poke = new Attack("poke", 1, 1, 1);
+        kameha = new Attack("Kamehameha", 30 , 50 , .8);
+//        this.flame.attack(new Attack("Flame", 10, 30, .5));
+//        this.kameha.attack(new Attack("Kamehameha", 30 , 50 , .8));
+//        this.poke.attack(new Attack("poke", 1, 1, 1));
+//        this.op.attack(new Attack("OP!!!", 9001, 9001, 1));
+        moves.add(flame);
+        moves.add(poke);
+        moves.add(op);
         setEnemy(new Enemy("Bob", 100, enemyMoves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
         setCharacter(new Character(100, moves, ResourceTools.loadImageFromResource("Resources/front_idle.png")));
         setEnemy(getEnemy().getBee());
@@ -277,7 +288,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         this.dialog.setModal(true);
         this.dialog.setTitle("Battle!");
 
-        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), Enemy.getBee(), this);
+        this.combatVisualizer = new CombatVisualizer(this.getCharacter(), this.enemy, this);
         this.dialog.add(this.combatVisualizer);
         this.dialog.setAlwaysOnTop(true);
 
@@ -389,11 +400,21 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
 
     @Override
     public void combatResultEvent(CombatResults result) {
-        System.out.println("yo again");
-//        System.out.println(this.currentMap.validateCharacterMove(charXY, Map.Direction.LEFT));
-//        System.out.println(this.currentMap.validateLocation(charXY));
+        if(this.enemy.getName() == Enemy.getBee().getName()){
+            this.character.setHealth(this.character.getHealth() + 10);
+        } 
         
-        System.out.println("DOUBLE YO");
+        else if (this.enemy.getName() == Enemy.getSpider().getName()){
+            if(!(this.character.getAttacks().contains(this.kameha))){
+            this.character.getAttacks().add(this.kameha);
+                System.out.println("YO");
+            }
+            System.out.println("YONO");
+            this.character.setHealth(this.character.getHealth() + 20);
+            
+        }
+        
+        
         this.dialog.dispose();
         this.currentMap.deleteMapItem(currentMap.getCellLocation(charXY), this.direction);
     }
