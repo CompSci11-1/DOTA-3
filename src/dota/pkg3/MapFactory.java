@@ -1644,13 +1644,12 @@ obstacles.add(new MapObstacle(new Point(4, 30), ObstacleType.WALL));
 
 
         ArrayList<MapItem> items = new ArrayList<MapItem>();
-            Enemy enemy = Enemy.getBee();
-        items.add(new MapItem(new Point (7,28), enemy));
-        items.add(new MapItem(new Point (19,18), enemy));
-        items.add(new MapItem(new Point (7,17), enemy));
-        items.add(new MapItem(new Point (34,9), enemy));
-        items.add(new MapItem(new Point (42,25), enemy));
-        items.add(new MapItem(new Point (38,35), enemy));
+        items.add(new MapItem(new Point (7,28), Enemy.getBee()));
+        items.add(new MapItem(new Point (19,18), Enemy.getBee()));
+        items.add(new MapItem(new Point (7,17), Enemy.getSpider()));
+        items.add(new MapItem(new Point (34,9), Enemy.getSpider()));
+        items.add(new MapItem(new Point (42,25), Enemy.getBee()));
+        items.add(new MapItem(new Point (38,35), Enemy.getBee()));
         
         //add other items here
 
