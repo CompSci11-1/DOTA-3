@@ -2,8 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/MapEnvironment.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/CombatVisualizer.java</file>
-        <file>file:/C:/Users/Evan/Documents/GitHub/DOTA-3/src/dota/pkg3/MapFactory.java</file>
+        <file>file:/Users/erickbassett/NetBeansProjects/DOTA-3/src/dota/pkg3/CombatVisualizer.java</file>
+        <file>file:/Users/erickbassett/NetBeansProjects/DOTA-3/src/dota/pkg3/CombatPanel.java</file>
+        <file>file:/Users/erickbassett/NetBeansProjects/DOTA-3/src/dota/pkg3/MapEnvironment.java</file>
+        <file>file:/Users/erickbassett/NetBeansProjects/DOTA-3/src/dota/pkg3/Enemy.java</file>
+        <file>file:/Users/erickbassett/NetBeansProjects/DOTA-3/src/dota/pkg3/MapFactory.java</file>
     </open-files>
 </project-private>
