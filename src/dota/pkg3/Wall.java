@@ -4,7 +4,7 @@
  */
 package dota.pkg3;
 
-import environment.Grid;
+import grid.Grid;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -23,30 +23,30 @@ public class Wall {
     
     
     public void start(Grid masterGrid){
-        this.wall.add(masterGrid.getCellPosition(30, 30));
-        this.wall.add(masterGrid.getCellPosition(30, 31));
-        this.wall.add(masterGrid.getCellPosition(31, 30));
-        this.wall.add(masterGrid.getCellPosition(35, 30));
-        this.wall.add(masterGrid.getCellPosition(36, 31));
-        this.wall.add(masterGrid.getCellPosition(36, 32));
-        this.wall.add(masterGrid.getCellPosition(36, 33));
-        this.wall.add(masterGrid.getCellPosition(38, 32));
-        this.wall.add(masterGrid.getCellPosition(33, 36));
-        this.wall.add(masterGrid.getCellPosition(32, 35));
+        this.wall.add(masterGrid.getCellSystemCoordinate(30, 30));
+        this.wall.add(masterGrid.getCellSystemCoordinate(30, 31));
+        this.wall.add(masterGrid.getCellSystemCoordinate(31, 30));
+        this.wall.add(masterGrid.getCellSystemCoordinate(35, 30));
+        this.wall.add(masterGrid.getCellSystemCoordinate(36, 31));
+        this.wall.add(masterGrid.getCellSystemCoordinate(36, 32));
+        this.wall.add(masterGrid.getCellSystemCoordinate(36, 33));
+        this.wall.add(masterGrid.getCellSystemCoordinate(38, 32));
+        this.wall.add(masterGrid.getCellSystemCoordinate(33, 36));
+        this.wall.add(masterGrid.getCellSystemCoordinate(32, 35));
         
     }
     
     public void update(Grid masterGrid){
-            this.getWall().set(0, masterGrid.getCellPosition(30, 30));
-            this.getWall().set(1, masterGrid.getCellPosition(30, 31));
-            this.getWall().set(2, masterGrid.getCellPosition(31, 30));
-            this.getWall().set(3, masterGrid.getCellPosition(31, 30));
-            this.getWall().set(4, masterGrid.getCellPosition(35, 30));
-            this.getWall().set(5, masterGrid.getCellPosition(36, 31));
-            this.getWall().set(6, masterGrid.getCellPosition(36, 32));
-            this.getWall().set(7, masterGrid.getCellPosition(36, 33));
-            this.getWall().set(8, masterGrid.getCellPosition(38, 32));
-            this.getWall().set(9, masterGrid.getCellPosition(33, 36));
+            this.getWall().set(0, masterGrid.getCellSystemCoordinate(30, 30));
+            this.getWall().set(1, masterGrid.getCellSystemCoordinate(30, 31));
+            this.getWall().set(2, masterGrid.getCellSystemCoordinate(31, 30));
+            this.getWall().set(3, masterGrid.getCellSystemCoordinate(31, 30));
+            this.getWall().set(4, masterGrid.getCellSystemCoordinate(35, 30));
+            this.getWall().set(5, masterGrid.getCellSystemCoordinate(36, 31));
+            this.getWall().set(6, masterGrid.getCellSystemCoordinate(36, 32));
+            this.getWall().set(7, masterGrid.getCellSystemCoordinate(36, 33));
+            this.getWall().set(8, masterGrid.getCellSystemCoordinate(38, 32));
+            this.getWall().set(9, masterGrid.getCellSystemCoordinate(33, 36));
 //            this.getWall().set(10, masterGrid.getCellPosition(32, 35));
     }
     

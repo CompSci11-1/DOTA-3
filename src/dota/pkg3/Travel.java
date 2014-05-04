@@ -4,7 +4,7 @@
  */
 package dota.pkg3;
 
-import environment.Grid;
+import grid.Grid;
 
 /**
  *

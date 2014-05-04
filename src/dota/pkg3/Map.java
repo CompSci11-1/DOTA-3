@@ -5,7 +5,7 @@
 package dota.pkg3;
 
 import audio.AudioPlayer;
-import environment.Grid;
+import grid.Grid;
 import image.ResourceTools;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -74,7 +74,7 @@ public class Map {
 //    private ArrayList<Point> items = new ArrayList<Point>();
 
             for (MapObstacle obstacle : obstacles) {
-                Point systemCoordinate = grid.getCellPosition(obstacle.getLocation());
+                Point systemCoordinate = grid.getCellSystemCoordinate(obstacle.getLocation());
                 systemCoordinate.x += (grid.getCellWidth() / 4);
                 systemCoordinate.y += (grid.getCellHeight() * 3 / 4) ;
                 
@@ -82,7 +82,7 @@ public class Map {
             }
             
             for (MapPortal portal : portals) {
-                Point systemCoordinate = grid.getCellPosition(portal.getLocation());
+                Point systemCoordinate = grid.getCellSystemCoordinate(portal.getLocation());
                 systemCoordinate.x += (grid.getCellWidth() / 4);
                 systemCoordinate.y += (grid.getCellHeight() * 3 / 4) ;
                 
@@ -90,7 +90,7 @@ public class Map {
             }
             
             for (MapItem item : items) {
-                Point systemCoordinate = grid.getCellPosition(item.getLocation());
+                Point systemCoordinate = grid.getCellSystemCoordinate(item.getLocation());
                 systemCoordinate.x += (grid.getCellWidth() / 4);
                 systemCoordinate.y += (grid.getCellHeight() * 3 / 4) ;
                 

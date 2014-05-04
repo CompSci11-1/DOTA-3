@@ -4,7 +4,7 @@
  */
 package dota.pkg3;
 
-import environment.Grid;
+import grid.Grid;
 import image.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;

@@ -32,7 +32,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     private Map storeMap;
     private Map level_one_map;
     private Map currentMap;
-    private Point charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
+    private Point charXY = this.level_one_map.getGrid().getCellSystemCoordinate(22, 10);
     private Boolean moved = true;
     private int movedCounter;
     private int stepcount;
@@ -162,35 +162,35 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
         if (this.stop != true) {
         if (e.getKeyCode() == KeyEvent.VK_1) {
             this.currentMap = this.level_one_map;
-            this.charXY = this.level_one_map.getGrid().getCellPosition(22, 10);
+            this.charXY = this.level_one_map.getGrid().getCellSystemCoordinate(22, 10);
         }
         if (e.getKeyCode() == KeyEvent.VK_2) {
             this.currentMap = this.forest;
-            this.charXY = this.forest.getGrid().getCellPosition(22, 10);
+            this.charXY = this.forest.getGrid().getCellSystemCoordinate(22, 10);
         }
         if (e.getKeyCode() == KeyEvent.VK_3) {
             this.currentMap = this.forestEntrance;
-            this.charXY = this.forestEntrance.getGrid().getCellPosition(24, 6);
+            this.charXY = this.forestEntrance.getGrid().getCellSystemCoordinate(24, 6);
         }
         if (e.getKeyCode() == KeyEvent.VK_4) {
             this.currentMap = this.townWithForest;
-            this.charXY = this.townWithForest.getGrid().getCellPosition(22, 10);
+            this.charXY = this.townWithForest.getGrid().getCellSystemCoordinate(22, 10);
         }
         if (e.getKeyCode() == KeyEvent.VK_5) {
             this.currentMap = this.mapToTown;
-            this.charXY = this.mapToTown.getGrid().getCellPosition(22, 10);
+            this.charXY = this.mapToTown.getGrid().getCellSystemCoordinate(22, 10);
         }
         if (e.getKeyCode() == KeyEvent.VK_6) {
             this.currentMap = this.campus;
-            this.charXY = this.campus.getGrid().getCellPosition(22, 10);
+            this.charXY = this.campus.getGrid().getCellSystemCoordinate(22, 10);
         }
         if (e.getKeyCode() == KeyEvent.VK_7) {
             this.currentMap = this.storeMap;
-            this.charXY = this.storeMap.getGrid().getCellPosition(5, 5);
+            this.charXY = this.storeMap.getGrid().getCellSystemCoordinate(5, 5);
         }
         if (e.getKeyCode() == KeyEvent.VK_8) {
             this.currentMap = this.houseMap;
-            this.charXY = this.houseMap.getGrid().getCellPosition(3, 5);
+            this.charXY = this.houseMap.getGrid().getCellSystemCoordinate(3, 5);
         }
 
         //just some event testing code... remove later!
@@ -353,7 +353,7 @@ public class MapEnvironment extends Environment implements PortalEventHandler, I
     public void portalEvent(MapPortal portal) {
         System.out.println("Changing map...");
         currentMap = portal.getDestinationMap();
-        charXY = this.currentMap.getGrid().getCellPosition(portal.getDestinationLocation());
+        charXY = this.currentMap.getGrid().getCellSystemCoordinate(portal.getDestinationLocation());
         AudioPlayer.play(ResourceTools.getResourceAsStream("sounds/transporter.wav"));
     }
     //</editor-fold>
